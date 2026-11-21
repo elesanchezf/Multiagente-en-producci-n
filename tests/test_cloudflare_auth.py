@@ -189,3 +189,17 @@ def test_the_error_log_reports_a_server_status_too(make_cost_client, capsys):
     errors = [event for event in events if event["event"] == "error"]
     assert errors[0]["status_code"] == 500
     assert SECRET_QUESTION not in out
+
+
+def test_the_error_log_includes_the_reason_without_sensitive_data(
+    make_cost_client, capsys
+):
+    """El evento error registra el motivo (mensaje seguro) del fallo."""
+    client = make_cost_client(model=FailingModel(503), CF_API_TOKEN=API_TOKEN)
+    client.post("/ask", json={"question": SECRET_QUESTION})
+    out = capsys.readouterr().out
+    events = [json.loads(line) for line in out.splitlines() if line.startswith("{")]
+    errors = [event for event in events if event["event"] == "error"]
+    assert errors[0]["reason"]
+    for secret in (SECRET_QUESTION, API_TOKEN):
+        assert secret not in out

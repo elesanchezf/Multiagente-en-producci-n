@@ -11,7 +11,8 @@ GATEWAY_URL = (
     "https://gateway.ai.cloudflare.com/v1/{account}/{gateway}"
     "/workers-ai/v1/chat/completions"
 )
-REQUEST_TIMEOUT_SECONDS = 30.0
+# La comparación real (21-nov-2026) tuvo un 502 de 30,03 s con Gemma, igual al tope.
+REQUEST_TIMEOUT_SECONDS = 60.0
 CACHE_TTL_HEADER = "cf-aig-cache-ttl"
 CACHE_STATUS_HEADER = "cf-aig-cache-status"
 AIG_AUTH_HEADER = "cf-aig-authorization"
@@ -75,6 +76,7 @@ class GatewayModel:
             "max_tokens": self._config.model_max_tokens,
             "temperature": self._config.model_temperature,
         }
+        body.update(self._config.model_extra_params.get(self.name, {}))
         try:
             response = self._client.post(self._url, headers=self._headers(), json=body)
         except httpx.HTTPError as error:

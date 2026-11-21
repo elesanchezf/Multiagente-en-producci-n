@@ -12,7 +12,7 @@ import httpx
 import pytest
 
 from app.config import load_config
-from app.gateway import GatewayModel, ModelUnavailable
+from app.gateway import GatewayModel, ModelUnavailable, REQUEST_TIMEOUT_SECONDS
 
 FAKE_TOKEN = "token-for-tests-only"
 EXPECTED_URL = (
@@ -109,3 +109,46 @@ def test_invalid_json_becomes_model_unavailable():
     model = make_model(lambda request: httpx.Response(200, text="not json"))
     with pytest.raises(ModelUnavailable):
         model.complete(MESSAGES)
+
+
+def test_extra_params_are_sent_only_for_the_configured_model():
+    """Los parámetros por modelo viajan solo con ese modelo y no pisan los base."""
+    bodies = []
+
+    def handler(request):
+        bodies.append(json.loads(request.content))
+        return httpx.Response(200, json={
+            "choices": [{"message": {"content": "{}"}}],
+            "usage": {"prompt_tokens": 1, "completion_tokens": 1}})
+
+    extra = {"gemma": {"chat_template_kwargs": {"enable_thinking": False},
+                       "response_format": {"type": "json_object"}}}
+    config = load_config({
+        "MODEL_PROVIDER": "gateway", "CF_ACCOUNT_ID": "a" * 32,
+        "CF_API_TOKEN": "token-ficticio-0000",
+        "MODEL_EXTRA_PARAMS": json.dumps(extra)})
+    transport = httpx.MockTransport(handler)
+    messages = [{"role": "user", "content": "x"}]
+    GatewayModel(config, "gemma", transport).complete(messages)
+    GatewayModel(config, "otro", transport).complete(messages)
+    assert bodies[0]["chat_template_kwargs"] == {"enable_thinking": False}
+    assert bodies[0]["response_format"] == {"type": "json_object"}
+    assert bodies[0]["model"] == "gemma"
+    assert bodies[0]["max_tokens"] == config.model_max_tokens
+    assert "chat_template_kwargs" not in bodies[1]
+    assert "response_format" not in bodies[1]
+
+
+def test_timeout_message_names_the_exception_type_without_secrets():
+    """El motivo identifica el tipo de excepción, sin texto de la excepción."""
+    def handler(request):
+        raise httpx.ReadTimeout("secret-detail", request=request)
+
+    with pytest.raises(ModelUnavailable) as error:
+        make_model(handler).complete(MESSAGES)
+    assert str(error.value) == "Gateway request failed: ReadTimeout"
+
+
+def test_request_timeout_leaves_room_for_slow_model_calls():
+    """El tope de espera es de 60 s (hubo una llamada de 30 s con Gemma)."""
+    assert REQUEST_TIMEOUT_SECONDS == 60.0

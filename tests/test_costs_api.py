@@ -37,7 +37,8 @@ def test_only_the_last_history_messages_reach_the_model(make_cost_client):
     response = client.post("/ask", json={"question": "Hola", "history": history})
     assert response.status_code == 200
     sent = model.seen[0]
-    assert [m["content"] for m in sent] == ["m2", "m3", "Hola"]
+    assert sent[0]["role"] == "system"
+    assert [m["content"] for m in sent[1:]] == ["m2", "m3", "Hola"]
 
 
 def test_cached_call_is_counted_and_costs_nothing(make_cost_client):

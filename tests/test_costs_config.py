@@ -1,5 +1,7 @@
 """Pruebas unitarias de la configuracion nueva de la sesion 3."""
 
+import json
+
 import pytest
 
 from app.config import ConfigError, load_config
@@ -8,7 +10,8 @@ from app.config import ConfigError, load_config
 def test_cost_settings_have_the_documented_defaults():
     """Los ajustes de costo toman los valores por omision documentados."""
     config = load_config({})
-    assert config.model_small == "@cf/meta/llama-3.1-8b-instruct-fast"
+    # Provisional: no hay modelo pequeño verificado en el catálogo de la cuenta.
+    assert config.model_small == config.model_large
     assert config.model_large == "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
     assert config.routing is True
     assert config.router_max_chars == 80
@@ -44,3 +47,20 @@ def test_zero_is_valid_for_the_window_and_the_cache():
     config = load_config({"HISTORY_WINDOW": "0", "CACHE_TTL_SECONDS": "0"})
     assert config.history_window == 0
     assert config.cache_ttl_seconds == 0
+
+
+def test_model_extra_params_are_validated_with_a_closed_list():
+    """Solo se admiten parámetros conocidos; los demás se rechazan sin eco."""
+    ok = {"m": {"chat_template_kwargs": {"enable_thinking": False},
+                "response_format": {"type": "json_object"}}}
+    assert load_config({"MODEL_EXTRA_PARAMS": json.dumps(ok)}).model_extra_params == ok
+    assert load_config({}).model_extra_params == {}
+    bad = ["no es json", "[]", '{"m": []}', '{"m": {"max_tokens": {"a": 1}}}',
+           '{"m": {"model": {"a": 1}}}',
+           '{"m": {"chat_template_kwargs": {"enable_thinking": "no"}}}',
+           '{"m": {"chat_template_kwargs": {"otro": true}}}',
+           '{"m": {"response_format": {"type": "json_schema"}}}']
+    for raw in bad:
+        with pytest.raises(ConfigError) as error:
+            load_config({"MODEL_EXTRA_PARAMS": raw})
+        assert raw not in str(error.value)

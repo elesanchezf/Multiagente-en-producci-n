@@ -39,6 +39,10 @@ class Pricing:
             isinstance(price, dict)
             and isinstance(price.get("input"), (int, float))
             and isinstance(price.get("output"), (int, float))
+            and all(
+                isinstance(price.get(key, 0), (int, float))
+                for key in ("reserve_input", "reserve_output")
+            )
             for price in models.values()
         )
         if not valid:
@@ -72,3 +76,22 @@ class Pricing:
             return 0.0
         total = input_tokens * price["input"] + output_tokens * price["output"]
         return total / TOKENS_PER_UNIT
+
+    def reserve_cost(self, model: str, input_tokens: int, output_tokens: int) -> float:
+        """Costo conservador para reservar presupuesto antes de una llamada.
+
+        Usa ``reserve_input`` y ``reserve_output`` si la tabla los define y, si no,
+        el precio normal. Nunca se usa para calcular los resultados informados.
+
+        :param model: Nombre del modelo.
+        :param input_tokens: Tokens de entrada estimados.
+        :param output_tokens: Tokens de salida solicitados.
+        :return: Costo de reserva en USD.
+        :raises PricingError: Si el modelo no tiene precio.
+        """
+        price = self._prices.get(model)
+        if price is None:
+            raise PricingError(f"No price for model {model!r}")
+        rate_in = max(price["input"], price.get("reserve_input", 0))
+        rate_out = max(price["output"], price.get("reserve_output", 0))
+        return (input_tokens * rate_in + output_tokens * rate_out) / TOKENS_PER_UNIT
