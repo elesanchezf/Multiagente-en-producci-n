@@ -21,5 +21,5 @@ Cada regla indica dónde está en el código y cómo se comprueba. Las reglas de
 
 ## Verificaciones pendientes antes de publicar
 
-- [Verificación de la imagen base y vulnerabilidades](image-vulnerabilities.md): estado del 21-nov-2026: 0 críticas y 3 altas de OpenSSL sin corrección en la imagen final, riesgo no aceptado; ver también [aplicabilidad de OpenSSL](openssl-aplicabilidad.md).
+- [Verificación de la imagen base y vulnerabilidades](image-vulnerabilities.md): estado del 21-nov-2026: 0 críticas y 3 altas de OpenSSL sin corrección en la imagen final, riesgo aceptado temporalmente hasta el 27-nov-2026 para la demo académica (ver `openssl-aplicabilidad.md`); ver también [aplicabilidad de OpenSSL](openssl-aplicabilidad.md).
 - [Arquitectura](architecture.md): contiene las decisiones y los puntos «Pendiente de decisión humana» (acceso y retención de logs, salida de datos con `gateway`, nombre del repositorio).

@@ -217,7 +217,7 @@ Resumen honesto; el detalle, con fechas y límites, está en `evidence/README.md
 | Proveedor real | Consulta real con 70B y traza en LangSmith (19-nov); sonda Gemma 2/3; Q09 real aprobada; comparación completa | — |
 | Costos | Comparación real de 12 preguntas por variante (`evidence/resultado-comparacion-E06.md`): aprobadas 9 vs 10; costo estimado 0,003643 vs 0,001374 USD; latencia media 1 804 vs 3 802 ms. Optimized combina dos ejecuciones (espera 30→60 s); Q05 y Q06 no aprobaron en ambas | Costos estimados, no factura; ahorro no garantizado; muestra pequeña |
 | Concurrencia | Local: 300 solicitudes, 30 simultáneas, 0 errores | Sobre el despliegue |
-| Seguridad | Privacidad, claves, aislamiento (local); Scout 21-nov: 0 críticas y 3 altas de OpenSSL sin corrección | Revisión de privilegios; decisión de riesgo sobre OpenSSL |
+| Seguridad | Privacidad, claves, aislamiento (local); Scout 21-nov: 0 críticas y 3 altas de OpenSSL sin corrección | Revisión de privilegios; riesgo de OpenSSL aceptado temporalmente (revisión 27-nov-2026), sin VEX |
 | Despliegue | Build amd64 y humo en contenedor local (21-nov) | Render, Swagger, consulta real en URL pública |
 | Entrega | Remoto configurado | Commits, push, PR hacia `main`, CI en GitHub, capturas y video |
 

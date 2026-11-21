@@ -2,6 +2,9 @@
 
 Servicio nuevo y separado: **`multiagente-reto`** (`render.yaml`). No modifica el servicio `hr-assistant`. Nada de lo siguiente se ha ejecutado: el despliegue y la carga de secretos requieren la decisión y las credenciales de la persona responsable.
 
+## Advertencia: elegir la rama `reto/produccion`
+El `render.yaml` de `main` es el de la base de la sesión 4 y define el servicio `hr-assistant`. Al conectar el Blueprint hay que elegir la rama **`reto/produccion`**, cuyo `render.yaml` define solo `multiagente-reto` (plan `free`). No conecte el Blueprint a `main` hasta que el PR se fusione y se revise ese archivo.
+
 ## Variantes que reproduce el blueprint
 `MODEL_SMALL` = Gemma 4 26B (`@cf/google/gemma-4-26b-a4b-it`), `MODEL_LARGE` = Llama 3.3 70B fp8 fast, `ROUTING=true`, `HISTORY_WINDOW=6`, `AGENT_MAX_STEPS=3`, `MODEL_MAX_TOKENS=300`, `MODEL_TEMPERATURE=0`, `CACHE_TTL_SECONDS=0` y `MODEL_EXTRA_PARAMS` con `enable_thinking=false` y `response_format=json_object` solo para Gemma. Es la variante optimized de `evidence/resultado-comparacion-E06.md`. Una prueba (`tests/test_delivery_files.py`) verifica estos valores y que coincidan con `scripts/run-comparison.ps1`.
 Con `ENVIRONMENT=production` el servicio no arranca si falta `API_KEYS`, si una clave tiene menos de 16 caracteres, si el proveedor es `fake` o si las trazas están encendidas sin ocultar entradas y salidas.

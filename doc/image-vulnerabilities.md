@@ -8,7 +8,7 @@ Fuente: `evidence/docker/20261121/` (`resultado.md`, `scout-base.txt`, `scout-fi
 - Base candidata `python:3.12.16-slim-trixie` (índice `sha256:5e2bdb1b…4fa5b`, sin cambios desde el 19-nov): Docker Scout, linux/amd64, 21-nov: 0 críticas y 5 altas (3 de openssl sin corrección y 2 de zlib corregibles).
 - Imagen final `multiagente-reto:final` (ID local `sha256:e79f4991…2ada99`; no es un digest de registro): 0 críticas y **3 altas**, todas de `openssl 3.5.7-1~deb13u3`: CVE-2026-107493, CVE-2026-84786 y CVE-2026-107496, «not fixed».
 - Escaneos anteriores: 14-nov (0 altas en la imagen final, ver historial); 19-nov (6 altas de openssl, `evidence/docker/scout-final.txt`).
-- Riesgo: **no aceptado y sin declaración VEX**. Hace falta la decisión de la persona responsable; el análisis siguiente es informativo.
+- Riesgo: **aceptado temporalmente** por Eleazar Sánchez Figueroa solo para desplegar la demo académica `multiagente-reto` con datos ficticios; fecha de revisión **27-nov-2026** (ver `openssl-aplicabilidad.md`). Las vulnerabilidades **no están corregidas** y no se demostró que no afecten a la aplicación; **sin declaración VEX**.
 
 ### Las tres altas actuales (Debian Security Tracker, consultado el 21-nov-2026)
 Para trixie (3.5.7-1~deb13u3) y unstable: estado «vulnerable / unfixed»; no existe versión corregida en Debian.

@@ -20,4 +20,4 @@ app 10 · tests 19 · e2e 2 · scripts 13 · doc 16 · evidence 94 · data 2 · 
 `.env` y variantes, `.venv`, `.uv-cache`, `.playwright`, cachés, `*.pid`, y los originales con rutas personales o identificadores de cuenta: `evidence/baseline/{api-diagnostic,pytest-isolated,pytest}.txt`, `evidence/e2e-fake-20261120.txt`, `evidence/multiagent-{e2e,tests}.txt` y `evidence/langsmith-check/workspaces-20261119-223325.json`. En su lugar se publican las copias `*.anonimizado.*`, marcadas como anonimizadas.
 
 ## Qué decisión de seguridad falta
-Las 3 altas de OpenSSL sin corrección (CVE-2026-107493, CVE-2026-84786 y CVE-2026-107496) siguen abiertas: riesgo **no aceptado** y **sin VEX**. Ver `doc/openssl-aplicabilidad.md`.
+Las 3 altas de OpenSSL sin corrección (CVE-2026-107493, CVE-2026-84786 y CVE-2026-107496) siguen abiertas y sin corrección: riesgo **aceptado temporalmente** por la persona responsable solo para la demo académica (revisión 27-nov-2026) y **sin VEX**. Ver `doc/openssl-aplicabilidad.md`.

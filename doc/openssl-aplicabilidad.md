@@ -33,5 +33,10 @@ Evidencia: `evidence/docker/20261121/openssl-aplicabilidad.txt`, `debian-tracker
 - Vigilar la corrección: repetir `docker scout cves` y `apt-cache policy openssl libssl3t64` antes de entregar y tras cada reconstrucción; reconstruir sobre la base cuando Debian publique el parche.
 - Opcional, requiere decisión: separar dependencias de ejecución y de desarrollo para reducir la superficie (no mitiga estas CVE).
 
-## Decisión que sigue pendiente
-Aceptar el riesgo con justificación y fecha de revisión, esperar a la corrección de Debian, o emitir VEX con evidencia adicional (por ejemplo, pruebas de ejecución). Hasta entonces el estado es: **tres altas abiertas, sin riesgo aceptado y sin VEX**.
+## Decisión registrada (20-nov-2026, hora local)
+Eleazar Sánchez Figueroa **aceptó temporalmente el riesgo** de las tres altas (CVE-2026-107493, CVE-2026-84786 y CVE-2026-107496) **únicamente** para desplegar la demo académica `multiagente-reto` con datos ficticios.
+- **Fecha de revisión: 27 de noviembre de 2026.** Al llegar esa fecha, repetir el escaneo, comprobar si Debian publicó corrección y renovar, retirar el servicio o reconstruir la imagen.
+- **Alcance:** solo esa demo; no cubre datos reales ni otros despliegues.
+- **Lo que esta decisión no significa:** que las vulnerabilidades estén corregidas ni que se haya demostrado que no afectan a la aplicación. La incertidumbre de la sección «Incertidumbres generales» sigue vigente.
+- **Mitigaciones existentes:** las de la sección «Mitigaciones aplicables» (sin servidor TLS propio, cliente TLS hacia dos destinos, proceso sin privilegios, herramientas de solo lectura, sin ejecución de procesos externos, datos ficticios).
+- **No se emitió VEX** ni se declaró «no afectado».

@@ -13,7 +13,7 @@ personales reales. Una prueba simulada no demuestra funcionamiento del proveedor
 | E05 | Observabilidad | Traza real LangSmith y logs con el mismo request_id | Comprobado en una consulta real (19-nov-2026, request_id smoke-a1601932321f): 3 llamadas al modelo de 70B, respuesta correcta aprobada por el revisor, y el mismo request_id en respuesta, log y trazas de LangSmith (consulta por metadatos). Limitaciones: sin captura de la interfaz de LangSmith, log en proceso y no de un servicio desplegado; ver smoke-real/resultado-gateway-20261119.md |
 | E06 | Costos | Mismo conjunto de preguntas antes/después, calidad, tokens y costo | Comprobado con límites: comparación real consolidada (12 preguntas por variante; optimized en dos ejecuciones, espera 30→60 s); ver `resultado-comparacion-E06.md`. Costos estimados, no factura; sin ahorro garantizado; Q05 y Q06 no aprobaron en ambas |
 | E07 | Seguridad | Pruebas de validación, autenticación, auditoría, PII y privilegios | Parcial: controles de privacidad probados localmente (privacy-tests.txt). Pendiente: revisión de privilegios y despliegue |
-| E08 | Vulnerabilidades | Docker Scout de imagen base y final con digest y plataforma | Escaneo del 21-nov-2026: 0 críticas y 3 altas (OpenSSL, sin corrección en Debian) en la imagen final; riesgo no aceptado; ver doc/image-vulnerabilities.md |
+| E08 | Vulnerabilidades | Docker Scout de imagen base y final con digest y plataforma | Escaneo del 21-nov-2026: 0 críticas y 3 altas (OpenSSL, sin corrección en Debian) en la imagen final; riesgo aceptado temporalmente (revisión 27-nov-2026) solo para la demo académica, sin VEX; ver doc/image-vulnerabilities.md |
 | E09 | Entrega | CI, PR, URL, README y video de 3–5 minutos | Pendiente |
 
 Las capturas se guardarán en screenshots/ cuando se observen los resultados reales.
@@ -83,7 +83,7 @@ Sonda Gemma (`costs/20261120-015535-real/results.json`, conservada): 2/3; Q09 fa
 - `costs/consolidado-20261121-004715-real+20261121-010610-real/` y `resultado-comparacion-E06.md`: consolidación sin inferencia. El intento fallido de Q05 se conserva aparte; su consumo es desconocido.
 
 ## Actualización 21-nov-2026 (preparación de entrega)
-- `docker/20261121/`: etiquetas oficiales de Python, correcciones disponibles, build de `multiagente-reto:final` (ID local, no digest de registro), Scout de la base candidata (0 críticas, 5 altas) y de la imagen final (0 críticas, 3 altas de OpenSSL sin corrección), extractos del Debian Security Tracker y prueba de humo. E03 sigue parcial (sin despliegue ni Swagger público); E08 abierto: riesgo no aceptado.
+- `docker/20261121/`: etiquetas oficiales de Python, correcciones disponibles, build de `multiagente-reto:final` (ID local, no digest de registro), Scout de la base candidata (0 críticas, 5 altas) y de la imagen final (0 críticas, 3 altas de OpenSSL sin corrección), extractos del Debian Security Tracker y prueba de humo. E03 sigue parcial (sin despliegue ni Swagger público); E08 abierto: riesgo aceptado temporalmente, sin VEX.
 - `langsmith-check/workspaces-20261119-223325.anonimizado.json`: copia anonimizada para entrega; el original sigue en local y está excluido del control de versiones.
 - Documentos de entrega: `doc/entrega.md`, `doc/guion-video.md`, `doc/publicacion.md`, `doc/adr/0013-coordinador-y-revisor.md`.
 

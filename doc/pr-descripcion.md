@@ -23,11 +23,11 @@ Ver `README.md` (requisitos, instalación, variables de entorno y comandos). Res
 | Pruebas | 252 aprobadas (unitarias y e2e); Pylint 10,00/10 | e2e con modelo simulado |
 | Costos (12 preguntas, real) | costo estimado 0,001374 (optimized) frente a 0,003643 USD (baseline); aprobadas 10/12 frente a 9/12; latencia media 3 802 frente a 1 804 ms | Estimaciones, no factura; optimized combina dos ejecuciones (espera 30 → 60 s); Q05 y Q06 no aprobaron en ambas variantes |
 | Seguridad | Autenticación, límite, validación, detección de datos sensibles, auditoría, secretos por entorno | Revisión de privilegios pendiente |
-| Contenedor | amd64, usuario no root, health y Swagger en local | Sin digest de registro; 0 críticas y 3 altas de OpenSSL sin corrección (riesgo no aceptado, sin VEX) |
+| Contenedor | amd64, usuario no root, health y Swagger en local | Sin digest de registro; 0 críticas y 3 altas de OpenSSL sin corrección (riesgo aceptado temporalmente hasta el 27-nov-2026 solo para la demo académica; sin VEX) |
 
 ## Notas Adicionales
 - Limitaciones: ver `doc/entrega.md` sección 3 y `doc/openssl-aplicabilidad.md`.
-- Pendientes que bloquean la entrega: despliegue en Render, capturas de Swagger y Render (las dos de LangSmith son de una prueba local, no del despliegue), decisión sobre OpenSSL, CI en GitHub y video.
+- Pendientes que bloquean la entrega: despliegue en Render, capturas de Swagger y Render (las dos de LangSmith son de una prueba local, no del despliegue), revisión del riesgo de OpenSSL el 27-nov-2026, y video.
 
 ## Archivos en este PR
 `app/` (API, coordinador y agentes), `tests/` y `e2e/`, `scripts/` (evaluación, consolidación, anonimización), `doc/` (arquitectura, ADR, costos, vulnerabilidades, despliegue, entrega), `evidence/` (con copias anonimizadas), `Dockerfile`, `render.yaml`, `.github/workflows/ci.yml`.

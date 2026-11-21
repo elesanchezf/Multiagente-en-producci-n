@@ -25,7 +25,7 @@ Base de comparación: commit `6083236` del repositorio `hr-assistant` (78 archiv
 | Concurrencia | `evidence/load/summary.json` | Local: 300 solicitudes, 30 simultáneas, 0 errores, aislamiento 300/300 | Modelo simulado; un proceso; no es el despliegue |
 | Seguridad | `evidence/privacy-tests.txt`, `doc/compliance-checklist.md` | Autenticación por cliente, límite de peticiones, detección de datos sensibles en ambos sentidos, auditoría sin texto de preguntas | Revisión de privilegios pendiente |
 | Contenedor | `evidence/docker/20261121/` | Build linux/amd64, usuario no root (UID 10001), `/health` 200, `/docs` 200, `/ask` 401 sin clave y 200 con clave, clave y pregunta ausentes del log | Imagen local sin digest de registro; humo con modelo simulado |
-| Vulnerabilidades | `evidence/docker/20261121/`, `doc/image-vulnerabilities.md`, `doc/openssl-aplicabilidad.md` | 0 críticas y **3 altas** (OpenSSL, sin corrección en Debian) en la imagen final | Riesgo **no aceptado**; decisión pendiente |
+| Vulnerabilidades | `evidence/docker/20261121/`, `doc/image-vulnerabilities.md`, `doc/openssl-aplicabilidad.md` | 0 críticas y **3 altas** (OpenSSL, sin corrección en Debian) en la imagen final | Riesgo **aceptado temporalmente** (revisión 27-nov-2026), solo para la demo académica con datos ficticios; sin VEX |
 
 ## 3. E06: costos, calidad y latencia (comparación real de 12 preguntas)
 
@@ -55,7 +55,7 @@ Fuente: `evidence/resultado-comparacion-E06.md` y `evidence/costs/consolidado-20
 
 1. **Despliegue en Render:** el blueprint del servicio separado `multiagente-reto` está listo (`render.yaml`, `doc/despliegue-render.md`); falta desplegarlo, Swagger público, consulta autenticada con el modelo real y concurrencia sobre la URL pública.
 2. **Capturas:** las dos de LangSmith están adjuntas (`evidence/screenshots/langsmith-*.png`; prueba local, no del despliegue; la primera incluye una búsqueda del navegador 0/0 que no es evidencia de correlación, y la correlación la muestra la segunda). Faltan Swagger público, Render, los resultados de la comparación y las trazas del servicio desplegado.
-3. **Decisión sobre OpenSSL:** tres altas sin corrección; requiere decisión de la persona responsable y repetir el escaneo sobre el digest de registro.
+3. **OpenSSL:** tres altas sin corrección; riesgo aceptado temporalmente por la persona responsable hasta el 27-nov-2026 solo para la demo académica (ver `doc/openssl-aplicabilidad.md`). Pendiente: repetir el escaneo sobre el digest de registro y revisar la decisión en esa fecha.
 4. **Revisión de privilegios** (mínimo privilegio de tokens y servicio).
 5. **Repositorio y PR:** la rama `reto/produccion` no tiene commits; `main` del repositorio de entrega está vacío (ver `doc/publicacion.md`). CI sin ejecutar en GitHub.
 6. **Video** de 3 a 5 minutos (guion en `doc/guion-video.md`).
