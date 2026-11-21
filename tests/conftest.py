@@ -127,7 +127,7 @@ def make_secure_client_fixture(employees_path):
     - Una variable con valor ``None`` en ``overrides`` se quita del entorno.
     """
 
-    def _make(clock=None, model=None, **overrides):
+    def _make(clock=None, model=None, employee_directory=None, **overrides):
         env = {
             "MODEL_PROVIDER": "fake",
             "EMPLOYEES_PATH": str(employees_path),
@@ -136,7 +136,10 @@ def make_secure_client_fixture(employees_path):
         }
         env.update(overrides)
         env = {name: value for name, value in env.items() if value is not None}
-        app = create_app(config=load_config(env), model=model, clock=clock)
+        app = create_app(
+            config=load_config(env), model=model,
+            directory=employee_directory, clock=clock
+        )
         return TestClient(app, raise_server_exceptions=False)
 
     return _make
@@ -152,8 +155,10 @@ def _with_key(client):
 def make_client(make_secure_client):
     """Fabrica clientes HTTP autenticados con ``create_app`` (sesion 1)."""
 
-    def _make(max_steps=3, max_chars=2000):
+    def _make(max_steps=3, max_chars=2000, model=None,
+              employee_directory=None):
         client = make_secure_client(
+            model=model, employee_directory=employee_directory,
             AGENT_MAX_STEPS=str(max_steps), MAX_QUESTION_CHARS=str(max_chars)
         )
         return _with_key(client)

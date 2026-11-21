@@ -7,6 +7,7 @@ from typing import Any, Callable, Dict, List, Optional, Tuple
 from app.directory import EmployeeDirectory
 from app.llm import TOOL_RESULT_PREFIX, Model
 from app.pricing import Pricing
+from app.privacy import public_record
 
 STEP_LIMIT_ANSWER = (
     "No pude completar la respuesta. Intenta con una pregunta más concreta."
@@ -40,6 +41,14 @@ class AgentResult:  # pylint: disable=too-many-instance-attributes
     route: str = ""
     cached_calls: int = 0
     cost_usd: float = 0.0
+    evidence: List[str] = field(default_factory=list, repr=False)
+    stopped: str = ""
+    agents_used: List[str] = field(default_factory=list)
+    review_status: str = "not_requested"
+    review_calls: int = 0
+    review_input_tokens: int = 0
+    review_output_tokens: int = 0
+    review_cost_usd: float = 0.0
 
 
 @dataclass(frozen=True)
@@ -113,6 +122,7 @@ class Agent:
         :return: El resultado con respuesta, pasos, herramientas y tokens.
         """
         result, stopped = self._execute(question, history or [])
+        result.stopped = stopped
         self._emit(
             "agent_run",
             question_chars=len(question),
@@ -168,12 +178,16 @@ class Agent:
                 return result, "answer" if valid else "invalid"
             raw_args = action.get("args")
             args = raw_args if isinstance(raw_args, dict) else {}
-            self._emit("audit", action="tool_call", tool=action["tool"], args=args)
+            self._emit("audit", action="tool_call", tool=action["tool"],
+                       argument_names=sorted(
+                           key for key in args if key in {"employee_id", "department"}
+                       ))
             outcome = self._call_tool(action)
             if isinstance(outcome, tuple):
                 result.answer = outcome[0]
                 return result, "invalid"
             result.tools_used.append(action["tool"])
+            result.evidence.append(outcome)
             messages.append({"role": "assistant", "content": response.text})
             messages.append({"role": "user", "content": TOOL_RESULT_PREFIX + outcome})
         return result, "step_limit"
@@ -251,7 +265,7 @@ class Agent:
         employee = self._directory.get_employee(employee_id)
         if employee is None:
             return f"No existe el empleado {employee_id}."
-        return json.dumps(employee, ensure_ascii=False)
+        return json.dumps(public_record(employee), ensure_ascii=False)
 
     def _tool_search_department(self, args: Dict):
         """Ejecuta la herramienta ``search_by_department``.
@@ -265,4 +279,4 @@ class Agent:
         found = self._directory.search_by_department(department)
         if not found:
             return f"No hay empleados en el departamento {department}."
-        return json.dumps(found, ensure_ascii=False)
+        return json.dumps([public_record(item) for item in found], ensure_ascii=False)

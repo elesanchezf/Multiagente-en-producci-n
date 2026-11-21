@@ -212,7 +212,8 @@ def _audit(context, capsys, action, tool):
     events = _events(context, capsys, "audit")
     assert len(events) == 1
     assert (events[0]["action"], events[0]["tool"]) == (action, tool)
-    assert events[0]["args"] == {"employee_id": "EMP-0004"}
+    assert events[0]["argument_names"] == ["employee_id"]
+    assert "args" not in events[0]
 
 
 @then("no log line contains the question text")

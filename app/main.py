@@ -6,9 +6,11 @@ from typing import Callable, Dict, List, Literal, Optional
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import FileResponse, JSONResponse
+from fastapi.exceptions import RequestValidationError
 from pydantic import BaseModel, Field
 
-from app.agent import Agent, RunSettings
+from app.agent import RunSettings
+from app.multiagent import Coordinator
 from app.clock import Clock, SystemClock
 from app.auth import HEADER_NAME, INVALID_KEY_DETAIL, identify_client
 from app.compliance import check_production
@@ -24,6 +26,7 @@ from app.observability import (
     resolve_request_id,
 )
 from app.pricing import Pricing, PricingError
+from app.privacy import SensitiveDataError, sensitive_kinds
 from app.ratelimit import RateLimiter
 from app.router import choose_route
 from app.tracing import is_tracing_enabled, traced
@@ -55,7 +58,7 @@ def _agent_factory(
     directory: EmployeeDirectory,
     model: Optional[Model],
     logger: JsonLogger,
-) -> Callable[[str], Agent]:
+) -> Callable[[str], Coordinator]:
     """Prepara modelos, precios y trazas, y devuelve el armador de agentes.
 
     :param config: Configuración del servicio.
@@ -94,7 +97,7 @@ def _agent_factory(
             client_var.get,
         )
 
-    def agent_for(question: str) -> Agent:
+    def agent_for(question: str) -> Coordinator:
         """Elige el modelo de la pregunta y arma el agente que lo usa.
 
         :param question: Pregunta de la persona usuaria.
@@ -104,7 +107,7 @@ def _agent_factory(
         settings = RunSettings(
             decision.model, decision.reason, config.history_window, pricing
         )
-        return Agent(
+        return Coordinator(
             models[decision.model],
             directory,
             config.agent_max_steps,
@@ -114,6 +117,57 @@ def _agent_factory(
         )
 
     return agent_for
+
+
+def _payload(result, request_id: str) -> dict:
+    """Arma el cuerpo de respuesta de ``POST /ask``.
+
+    :param result: Resultado del coordinador.
+    :param request_id: Identificador de la petición.
+    :return: Diccionario serializable.
+    """
+    return {
+        "request_id": request_id,
+        "answer": result.answer,
+        "steps": result.steps,
+        "tools_used": result.tools_used,
+        "input_tokens": result.input_tokens,
+        "output_tokens": result.output_tokens,
+        "model": result.model,
+        "route": result.route,
+        "cached_calls": result.cached_calls,
+        "cost_usd": result.cost_usd,
+        "agents_used": result.agents_used,
+        "review_status": result.review_status,
+        "review_calls": result.review_calls,
+        "review_input_tokens": result.review_input_tokens,
+        "review_output_tokens": result.review_output_tokens,
+        "review_cost_usd": result.review_cost_usd,
+    }
+
+
+def _enforce_compliance(config: Config) -> None:
+    """Detiene el arranque si la configuración incumple las reglas de producción.
+
+    :param config: Configuración del servicio.
+    :raises ConfigError: Si hay incumplimientos.
+    """
+    violations = check_production(config)
+    if violations:
+        raise ConfigError("Production compliance failed: " + "; ".join(violations))
+
+
+def _error_details(error: ModelUnavailable) -> dict:
+    """Campos seguros del log para un fallo del proveedor.
+
+    :param error: Fallo del modelo.
+    :return: Tipo de error, motivo (mensaje sin datos sensibles) y, si existe,
+        código HTTP.
+    """
+    details = {"error_type": type(error).__name__, "reason": str(error)}
+    if error.status_code is not None:
+        details["status_code"] = error.status_code
+    return details
 
 
 def _make_gate(
@@ -173,9 +227,7 @@ def create_app(
     :return: La aplicación FastAPI.
     """
     config = config or load_config()
-    violations = check_production(config)
-    if violations:
-        raise ConfigError("Production compliance failed: " + "; ".join(violations))
+    _enforce_compliance(config)
     clock = clock or SystemClock()
     directory = directory or EmployeeDirectory.from_file(config.employees_path)
     logger = JsonLogger(config.service_name, clock)
@@ -184,6 +236,12 @@ def create_app(
     agent_for = _agent_factory(config, directory, model, logger)
 
     api = FastAPI(title="HR Assistant")
+
+    @api.exception_handler(RequestValidationError)
+    async def invalid_body(_request, _error):
+        """Evita que los errores de validación devuelvan valores de entrada."""
+        logger.emit("security", action="invalid_request")
+        return JSONResponse(status_code=422, content={"detail": "Invalid request"})
 
     @api.middleware("http")
     async def observe(request: Request, call_next):
@@ -238,13 +296,24 @@ def create_app(
         if not body.question.strip() or len(body.question) > config.max_question_chars:
             raise HTTPException(status_code=422, detail="Invalid question length")
         history = [item.model_dump() for item in body.history or []]
+        kinds = sensitive_kinds([body.question, history])
+        if kinds:
+            logger.emit("security", action="input_blocked", categories=sorted(kinds))
+            raise HTTPException(status_code=422, detail="Sensitive information blocked")
         try:
             result = agent_for(body.question).run(body.question, history)
+            output_kinds = sensitive_kinds(result.answer)
+            if output_kinds:
+                raise SensitiveDataError("final_output", output_kinds)
+        except SensitiveDataError as error:
+            logger.emit("security", action="output_blocked", stage=error.stage,
+                        categories=error.kinds)
+            return JSONResponse(status_code=502, content={
+                "detail": "Sensitive information blocked",
+                "request_id": request_id_var.get(),
+            })
         except ModelUnavailable as error:
-            details = {"error_type": type(error).__name__}
-            if error.status_code is not None:
-                details["status_code"] = error.status_code
-            logger.emit("error", **details)
+            logger.emit("error", **_error_details(error))
             return JSONResponse(
                 status_code=502,
                 content={
@@ -254,18 +323,7 @@ def create_app(
             )
         metrics.record_tokens(result.input_tokens, result.output_tokens)
         metrics.record_cost(result.cost_usd)
-        return {
-            "request_id": request_id_var.get(),
-            "answer": result.answer,
-            "steps": result.steps,
-            "tools_used": result.tools_used,
-            "input_tokens": result.input_tokens,
-            "output_tokens": result.output_tokens,
-            "model": result.model,
-            "route": result.route,
-            "cached_calls": result.cached_calls,
-            "cost_usd": result.cost_usd,
-        }
+        return _payload(result, request_id_var.get())
 
     return api
 
@@ -280,9 +338,7 @@ def validate_environment() -> Config:
     :raises ConfigError: Si la configuración es inválida o incumple compliance.
     """
     config = load_config()
-    violations = check_production(config)
-    if violations:
-        raise ConfigError("Production compliance failed: " + "; ".join(violations))
+    _enforce_compliance(config)
     return config
 
 

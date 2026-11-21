@@ -1,6 +1,8 @@
 """End-to-end tests of the HR assistant page, driven from the browser."""
 import os
 import re
+import json
+from pathlib import Path
 
 from playwright.sync_api import Page, expect
 
@@ -8,6 +10,11 @@ FIRST_QUESTION = "How many vacation days do I get per year?"
 SECOND_QUESTION = "And how do I request them?"
 WRONG_KEY = "fictitious-wrong-key-0000"
 INVALID_KEY_MESSAGE = "Clave inválida"
+
+
+def _is_ask_response(response) -> bool:
+    """Indica si la respuesta corresponde a la llamada ``/ask``."""
+    return response.url.endswith("/ask")
 
 
 def enter_key(page: Page, key: str) -> None:
@@ -23,6 +30,7 @@ def ask(page: Page, question: str, key: str | None = None) -> None:
 
 
 def test_user_sees_the_answer_after_asking_a_question(page: Page):
+    """Tras preguntar, la respuesta del asistente aparece en pantalla."""
     page.goto("/")
     ask(page, FIRST_QUESTION)
     expect(page.get_by_test_id("answer")).to_contain_text(FIRST_QUESTION)
@@ -30,6 +38,7 @@ def test_user_sees_the_answer_after_asking_a_question(page: Page):
 
 
 def test_user_sees_the_request_id_after_asking_a_question(page: Page):
+    """Tras preguntar, se muestra el identificador de la solicitud."""
     page.goto("/")
     expect(page.get_by_test_id("request-id")).to_have_text("-")
     ask(page, FIRST_QUESTION)
@@ -38,12 +47,14 @@ def test_user_sees_the_request_id_after_asking_a_question(page: Page):
 
 
 def test_question_field_is_cleared_after_sending(page: Page):
+    """El campo de pregunta queda vacío después de enviar."""
     page.goto("/")
     ask(page, FIRST_QUESTION)
     expect(page.get_by_test_id("question")).to_have_value("")
 
 
 def test_empty_question_shows_an_error_message_in_spanish(page: Page):
+    """Una pregunta vacía muestra un mensaje de error en español."""
     page.goto("/")
     ask(page, "   ")
     expect(page.get_by_test_id("answer")).to_contain_text(
@@ -52,6 +63,7 @@ def test_empty_question_shows_an_error_message_in_spanish(page: Page):
 
 
 def test_second_question_keeps_the_previous_conversation_on_screen(page: Page):
+    """La segunda pregunta conserva la conversación anterior en pantalla."""
     page.goto("/")
     ask(page, FIRST_QUESTION)
     expect(page.get_by_test_id("answer").locator(".assistant")).to_have_count(1)
@@ -62,7 +74,33 @@ def test_second_question_keeps_the_previous_conversation_on_screen(page: Page):
 
 
 def test_wrong_key_shows_the_invalid_key_message(page: Page):
+    """Una clave incorrecta muestra el mensaje de clave inválida."""
     page.goto("/")
     ask(page, FIRST_QUESTION, key=WRONG_KEY)
     expect(page.get_by_test_id("answer")).to_contain_text(INVALID_KEY_MESSAGE)
     expect(page.get_by_test_id("answer").locator(".assistant")).to_have_count(0)
+
+
+def test_directory_response_is_reviewed_and_evidence_is_saved(page: Page):
+    """Comprueba los tres roles y conserva una captura de la respuesta real de la UI."""
+    page.goto("/")
+    with page.expect_response(_is_ask_response) as pending:
+        ask(page, "¿Quién es el empleado EMP-0003?")
+    response = pending.value
+    assert response.status == 200
+    body = response.json()
+    assert body["agents_used"] == ["coordinator", "directory", "reviewer"]
+    assert body["review_status"] == "approved"
+    expect(page.get_by_test_id("answer")).to_contain_text("Marta Ruiz")
+    expect(page.get_by_test_id("answer")).to_contain_text(
+        "Respuesta contrastada con los datos del directorio."
+    )
+    output = os.environ.get("EVIDENCE_DIR")
+    if output:
+        destination = Path(output)
+        destination.mkdir(parents=True, exist_ok=True)
+        (destination / "multiagent-response.json").write_text(
+            json.dumps(body, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
+        page.get_by_test_id("api-key").fill("")
+        page.screenshot(path=str(destination / "multiagent-local.png"), full_page=True)

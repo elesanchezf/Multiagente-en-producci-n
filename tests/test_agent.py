@@ -99,7 +99,8 @@ def test_each_tool_call_is_audited_and_the_run_is_summarised(directory):
     (audit,) = logger.of("audit")
     assert audit["action"] == "tool_call"
     assert audit["tool"] == "get_employee"
-    assert audit["args"] == {"employee_id": "EMP-0004"}
+    assert audit["argument_names"] == ["employee_id"]
+    assert "EMP-0004" not in str(logger.events)
     (run,) = logger.of("agent_run")
     assert run["question_chars"] == len("¿EMP-0004?")
     assert run["history_messages"] == 1
