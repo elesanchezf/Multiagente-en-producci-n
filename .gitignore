@@ -3,6 +3,12 @@
 
 # Entorno virtual.
 .venv/
+.uv-cache/
+.playwright/
+test-results/
+*.pid
+.env.*
+!.env.example
 
 # Cachés y artefactos locales.
 __pycache__/
@@ -13,3 +19,15 @@ __pycache__/
 .ruff_cache/
 .coverage
 htmlcov/
+
+# Evidencia original con identificadores de cuenta de LangSmith: solo local.
+# La copia anonimizada (.anonimizado.json) si se versiona.
+evidence/langsmith-check/workspaces-20261119-223325.json
+
+# Evidencias originales con rutas personales: solo local; se versionan las copias .anonimizado.
+evidence/baseline/api-diagnostic.txt
+evidence/baseline/pytest-isolated.txt
+evidence/baseline/pytest.txt
+evidence/e2e-fake-20261120.txt
+evidence/multiagent-e2e.txt
+evidence/multiagent-tests.txt

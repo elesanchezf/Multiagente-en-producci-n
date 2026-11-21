@@ -1,5 +1,10 @@
 # Secretos: nunca entran a la imagen.
 .env
+.env.*
+!.env.example
+.uv-cache
+.playwright
+evidence
 
 # Pruebas: no se necesitan para ejecutar el producto.
 tests
