@@ -1,0 +1,20 @@
+Imagen: multiagente-reto:final (linux/amd64); proveedor fake; clave ficticia (no impresa); 21-nov-2026
+== GET /health
+{"status":"ok","pid":1} http=200
+== POST /ask sin clave
+http=401
+== POST /ask con clave
+{'agents_used': ['coordinator', 'directory', 'reviewer'], 'review_status': 'approved', 'steps': 2} http=200
+== GET /docs (Swagger)
+http=200
+== UID del proceso (docker top)
+USER                PID                 COMMAND
+10001               1284                uvicorn
+10001
+== versiones en la imagen
+openssl 3.5.7-1~deb13u3
+zlib1g 1:1.3.dfsg+really1.3.1-1+deb13u1
+== apariciones de la clave en el log
+0
+== apariciones del texto de la pregunta en el log
+0

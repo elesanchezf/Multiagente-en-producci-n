@@ -1,0 +1,83 @@
+{
+  "date_utc": "20261121-003252",
+  "mode": "real",
+  "plan": {
+    "questions": 1,
+    "variants": {
+      "optimized": {
+        "max_calls": 1,
+        "expected_calls": 1,
+        "worst_case_usd": 0.0002,
+        "expected_usd": 0.0
+      }
+    },
+    "models": {
+      "small": {
+        "id": "@cf/google/gemma-4-26b-a4b-it",
+        "usd_per_million": {
+          "input": 0.05,
+          "output": 0.3
+        }
+      },
+      "large": {
+        "id": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+        "usd_per_million": {
+          "input": 0.293,
+          "output": 2.253
+        }
+      }
+    },
+    "max_calls_total": 1,
+    "expected_calls_total": 1,
+    "worst_case_usd_total": 0.0002,
+    "expected_usd_total": 0.0
+  },
+  "calls_made": 1,
+  "cost_usd_reported": 1.7e-05,
+  "simulated": false,
+  "budget": {
+    "max_calls": 1,
+    "max_usd": 0.001,
+    "max_input_tokens": 1500,
+    "calls_through_guard": 1,
+    "spent_usd_from_usage": 1.71e-05,
+    "tripped": null
+  },
+  "optimized": {
+    "rows": [
+      {
+        "id": "Q09",
+        "status": 200,
+        "passed": true,
+        "protocol_failure": false,
+        "answer": "Pregúntame por un empleado (EMP-0001) o un departamento.",
+        "route": "default",
+        "model": "@cf/google/gemma-4-26b-a4b-it",
+        "review_status": "no_evidence",
+        "steps": 1,
+        "review_calls": 0,
+        "calls": 1,
+        "input_tokens": 192,
+        "output_tokens": 25,
+        "review_input_tokens": 0,
+        "review_output_tokens": 0,
+        "cost_usd": 1.7100000000000002e-05,
+        "review_cost_usd": 0.0,
+        "latency_ms": 1571.1
+      }
+    ],
+    "summary": {
+      "calls": 1,
+      "input_tokens": 192,
+      "output_tokens": 25,
+      "review_input_tokens": 0,
+      "review_output_tokens": 0,
+      "cost_usd": 1.7e-05,
+      "review_cost_usd": 0.0,
+      "passed": 1,
+      "protocol_failures": 0,
+      "questions": 1,
+      "quality": 1.0
+    }
+  }
+}

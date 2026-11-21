@@ -1,0 +1,81 @@
+    i New version 1.29.0 available (installed version is 1.28.0) at https://github.com/docker/scout-cli
+    ...Storing image for indexing
+    v Image stored for indexing
+    ...Indexing
+    v Indexed 127 packages
+    x Detected 2 vulnerable packages with a total of 8 vulnerabilities
+
+
+## Overview
+
+                   │       Analyzed Image        
+───────────────────┼─────────────────────────────
+ Target            │  python                     
+   digest          │  5e2bdb1b0d54               
+   platform        │ linux/amd64                 
+   vulnerabilities │    0C     8H     0M     0L  
+   size            │ 43 MB                       
+   packages        │ 127                         
+
+
+## Packages and Vulnerabilities
+
+   0C     6H     0M     0L  openssl 3.5.7-1~deb13u3
+pkg:deb/debian/openssl@3.5.7-1~deb13u3?os_distro=trixie&os_name=debian&os_version=13
+
+    x HIGH CVE-2026-95691
+      https://scout.docker.com/v/CVE-2026-95691?s=debian&n=openssl&ns=debian&t=deb&osn=debian&osv=13&vr=%3E0
+      Affected range : >0        
+      Fixed version  : not fixed 
+    
+    x HIGH CVE-2026-107493
+      https://scout.docker.com/v/CVE-2026-107493?s=debian&n=openssl&ns=debian&t=deb&osn=debian&osv=13&vr=%3E0
+      Affected range : >0        
+      Fixed version  : not fixed 
+    
+    x HIGH CVE-2026-95692
+      https://scout.docker.com/v/CVE-2026-95692?s=debian&n=openssl&ns=debian&t=deb&osn=debian&osv=13&vr=%3E0
+      Affected range : >0        
+      Fixed version  : not fixed 
+    
+    x HIGH CVE-2026-88823
+      https://scout.docker.com/v/CVE-2026-88823?s=debian&n=openssl&ns=debian&t=deb&osn=debian&osv=13&vr=%3E0
+      Affected range : >0        
+      Fixed version  : not fixed 
+    
+    x HIGH CVE-2026-124709
+      https://scout.docker.com/v/CVE-2026-124709?s=debian&n=openssl&ns=debian&t=deb&osn=debian&osv=13&vr=%3E0
+      Affected range : >0        
+      Fixed version  : not fixed 
+    
+    x HIGH CVE-2026-107496
+      https://scout.docker.com/v/CVE-2026-107496?s=debian&n=openssl&ns=debian&t=deb&osn=debian&osv=13&vr=%3E0
+      Affected range : >0        
+      Fixed version  : not fixed 
+    
+
+   0C     2H     0M     0L  zlib 1:1.3.dfsg+really1.3.1-1
+pkg:deb/debian/zlib@1%3A1.3.dfsg%2Breally1.3.1-1?os_distro=trixie&os_name=debian&os_version=13
+
+    x HIGH CVE-2026-85091
+      https://scout.docker.com/v/CVE-2026-85091?s=debian&n=zlib&ns=debian&t=deb&osn=debian&osv=13&vr=%3C1%3A1.3.dfsg%2Breally1.3.1-1%2Bdeb13u1
+      Affected range : <1:1.3.dfsg+really1.3.1-1+deb13u1 
+      Fixed version  : 1:1.3.dfsg+really1.3.1-1+deb13u1  
+    
+    x HIGH CVE-2026-76844
+      https://scout.docker.com/v/CVE-2026-76844?s=debian&n=zlib&ns=debian&t=deb&osn=debian&osv=13&vr=%3C1%3A1.3.dfsg%2Breally1.3.1-1%2Bdeb13u1
+      Affected range : <1:1.3.dfsg+really1.3.1-1+deb13u1 
+      Fixed version  : 1:1.3.dfsg+really1.3.1-1+deb13u1  
+    
+
+
+8 vulnerabilities found in 2 packages
+  CRITICAL  0 
+  HIGH      8 
+  MEDIUM    0 
+  LOW       0 
+
+
+What's next:
+    View base image update recommendations → docker scout recommendations python@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b
+

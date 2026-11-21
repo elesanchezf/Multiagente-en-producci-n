@@ -1,0 +1,37 @@
+{
+  "local_validation": {
+    "LANGSMITH_API_KEY": {
+      "estado": "válido"
+    },
+    "LANGSMITH_ENDPOINT": {
+      "estado": "válido"
+    },
+    "LANGSMITH_ORGANIZATION_ID": {
+      "estado": "válido"
+    },
+    "LANGSMITH_WORKSPACE_ID": {
+      "estado": "no definido"
+    }
+  },
+  "http_status": 200,
+  "workspaces": [
+    {
+      "id": "<id-de-espacio-anonimizado>",
+      "display_name": "Workspace 1",
+      "organization_id": "<id-de-organizacion-anonimizado>",
+      "is_deleted": false,
+      "is_personal": true
+    }
+  ],
+  "passed": true,
+  "request_sent": true,
+  "endpoint_host": "api.smith.langchain.com",
+  "path": "/api/v1/workspaces",
+  "header_names_sent": [
+    "X-API-Key",
+    "X-Organization-Id"
+  ],
+  "configured_workspace_id_listed": null,
+  "date_utc": "2026-11-19T22:33:25+00:00",
+  "anonymized": "Copia para entrega: se reemplazaron los identificadores de cuenta. El original se conserva solo en local y no se versiona."
+}

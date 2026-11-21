@@ -1,0 +1,1 @@
+ID=sha256:e79f499166bc63beeb90527b7fba1eb318bc759f4a0cbb97c2eb0951c72ada99 Arch=linux/amd64 User=appuser RepoDigests=[multiagente-reto@sha256:e79f499166bc63beeb90527b7fba1eb318bc759f4a0cbb97c2eb0951c72ada99] Created=2026-11-21T01:16:45.833244406Z

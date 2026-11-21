@@ -1,0 +1,67 @@
+    i New version 1.29.0 available (installed version is 1.28.0) at https://github.com/docker/scout-cli
+    ...Storing image for indexing
+    v Image stored for indexing
+    ...Indexing
+    v Indexed 189 packages
+    x Detected 1 vulnerable package with 6 vulnerabilities
+
+
+## Overview
+
+                   │           Analyzed Image            
+───────────────────┼─────────────────────────────────────
+ Target            │  local://multiagente-reto:revision  
+   digest          │  c96d12d2b1ce                       
+   platform        │ linux/amd64                         
+   vulnerabilities │    0C     6H     0M     0L          
+   size            │ 127 MB                              
+   packages        │ 189                                 
+
+
+## Packages and Vulnerabilities
+
+   0C     6H     0M     0L  openssl 3.5.7-1~deb13u3
+pkg:deb/debian/openssl@3.5.7-1~deb13u3?os_distro=trixie&os_name=debian&os_version=13
+
+    x HIGH CVE-2026-95691
+      https://scout.docker.com/v/CVE-2026-95691?s=debian&n=openssl&ns=debian&t=deb&osn=debian&osv=13&vr=%3E0
+      Affected range : >0        
+      Fixed version  : not fixed 
+    
+    x HIGH CVE-2026-107493
+      https://scout.docker.com/v/CVE-2026-107493?s=debian&n=openssl&ns=debian&t=deb&osn=debian&osv=13&vr=%3E0
+      Affected range : >0        
+      Fixed version  : not fixed 
+    
+    x HIGH CVE-2026-95692
+      https://scout.docker.com/v/CVE-2026-95692?s=debian&n=openssl&ns=debian&t=deb&osn=debian&osv=13&vr=%3E0
+      Affected range : >0        
+      Fixed version  : not fixed 
+    
+    x HIGH CVE-2026-88823
+      https://scout.docker.com/v/CVE-2026-88823?s=debian&n=openssl&ns=debian&t=deb&osn=debian&osv=13&vr=%3E0
+      Affected range : >0        
+      Fixed version  : not fixed 
+    
+    x HIGH CVE-2026-124709
+      https://scout.docker.com/v/CVE-2026-124709?s=debian&n=openssl&ns=debian&t=deb&osn=debian&osv=13&vr=%3E0
+      Affected range : >0        
+      Fixed version  : not fixed 
+    
+    x HIGH CVE-2026-107496
+      https://scout.docker.com/v/CVE-2026-107496?s=debian&n=openssl&ns=debian&t=deb&osn=debian&osv=13&vr=%3E0
+      Affected range : >0        
+      Fixed version  : not fixed 
+    
+
+
+6 vulnerabilities found in 1 package
+  CRITICAL  0 
+  HIGH      6 
+  MEDIUM    0 
+  LOW       0 
+
+
+What's next:
+    View base image update recommendations → docker scout recommendations local://multiagente-reto:revision
+

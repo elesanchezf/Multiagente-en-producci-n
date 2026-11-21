@@ -1,0 +1,8 @@
+[ANONIMIZADO] Copia para entrega: se sustituyeron rutas y nombres de usuario locales por marcadores. El original se conserva solo en local.
+============================= test session starts =============================
+platform win32 -- Python 3.12.16, pytest-9.2.0, pluggy-1.7.0
+rootdir: <RAIZ_DEL_PROYECTO>
+plugins: anyio-4.16.0, langsmith-0.14.17, platformdirs-4.14.5, bdd-9.0.1, cov-7.1.0, playwright-0.10.0
+collected 126 items
+
+tests\test_agent.py ......                                               [  4%]

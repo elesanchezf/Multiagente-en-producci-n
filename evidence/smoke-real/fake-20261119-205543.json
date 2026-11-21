@@ -1,0 +1,24 @@
+{
+  "provider": "fake",
+  "request_id": "smoke-d9678b2d4ac2",
+  "status": 200,
+  "header_matches": true,
+  "body_matches": true,
+  "agents_used": [
+    "coordinator",
+    "directory",
+    "reviewer"
+  ],
+  "review_status": "approved",
+  "model_calls": 3,
+  "log_events_found": [
+    "agent_run",
+    "audit",
+    "handoff",
+    "request",
+    "workflow_completed"
+  ],
+  "log_events_complete": true,
+  "langsmith_complete": null,
+  "passed": true
+}

@@ -1,0 +1,52 @@
+    i New version 1.30.0 available (installed version is 1.28.0) at https://github.com/docker/scout-cli
+    ...Storing image for indexing
+    v Image stored for indexing
+    ...Indexing
+    v Indexed 189 packages
+    x Detected 1 vulnerable package with 3 vulnerabilities
+
+
+## Overview
+
+                   │       Analyzed Image        
+───────────────────┼─────────────────────────────
+ Target            │  multiagente-reto:final     
+   digest          │  e79f499166bc               
+   platform        │ linux/amd64                 
+   vulnerabilities │    0C     3H     0M     0L  
+   size            │ 127 MB                      
+   packages        │ 189                         
+
+
+## Packages and Vulnerabilities
+
+   0C     3H     0M     0L  openssl 3.5.7-1~deb13u3
+pkg:deb/debian/openssl@3.5.7-1~deb13u3?os_distro=trixie&os_name=debian&os_version=13
+
+    x HIGH CVE-2026-107493
+      https://scout.docker.com/v/CVE-2026-107493?s=debian&n=openssl&ns=debian&t=deb&osn=debian&osv=13&vr=%3E0
+      Affected range : >0        
+      Fixed version  : not fixed 
+    
+    x HIGH CVE-2026-84786
+      https://scout.docker.com/v/CVE-2026-84786?s=debian&n=openssl&ns=debian&t=deb&osn=debian&osv=13&vr=%3E0
+      Affected range : >0        
+      Fixed version  : not fixed 
+    
+    x HIGH CVE-2026-107496
+      https://scout.docker.com/v/CVE-2026-107496?s=debian&n=openssl&ns=debian&t=deb&osn=debian&osv=13&vr=%3E0
+      Affected range : >0        
+      Fixed version  : not fixed 
+    
+
+
+3 vulnerabilities found in 1 package
+  CRITICAL  0 
+  HIGH      3 
+  MEDIUM    0 
+  LOW       0 
+
+
+What's next:
+    View base image update recommendations → docker scout recommendations multiagente-reto:final
+

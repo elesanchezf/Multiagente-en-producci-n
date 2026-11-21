@@ -1,0 +1,379 @@
+{
+  "local_validation": {
+    "CF_ACCOUNT_ID": "válido",
+    "CF_API_TOKEN": "válido"
+  },
+  "pages": [
+    {
+      "page": 1,
+      "http_status": 200,
+      "returned": 41,
+      "new": 41
+    }
+  ],
+  "models": [
+    {
+      "name": "@cf/meta/llama-3.2-1b-instruct",
+      "price_usd_per_million": {
+        "input": 0.027,
+        "output": 0.201
+      },
+      "context_window": "60000",
+      "planned_deprecation_date": "2026-11-20",
+      "blended_usd_per_million": 0.0705
+    },
+    {
+      "name": "@cf/google/gemma-4-26b-a4b-it",
+      "price_usd_per_million": {
+        "input": 0.05,
+        "output": 0.3
+      },
+      "context_window": "256000",
+      "function_calling": "true",
+      "blended_usd_per_million": 0.1125
+    },
+    {
+      "name": "@cf/meta/llama-3.2-3b-instruct",
+      "price_usd_per_million": {
+        "input": 0.0509,
+        "output": 0.335
+      },
+      "context_window": "80000",
+      "planned_deprecation_date": "2026-11-20",
+      "blended_usd_per_million": 0.1219
+    },
+    {
+      "name": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "price_usd_per_million": {
+        "input": 0.0509,
+        "output": 0.335
+      },
+      "context_window": "32768",
+      "function_calling": "true",
+      "planned_deprecation_date": "2026-11-20",
+      "blended_usd_per_million": 0.1219
+    },
+    {
+      "name": "@cf/zai-org/glm-4.7-flash",
+      "price_usd_per_million": {
+        "input": 0.0605,
+        "output": 0.4
+      },
+      "context_window": "131072",
+      "function_calling": "true",
+      "blended_usd_per_million": 0.1454
+    },
+    {
+      "name": "@cf/zai-org/glm-5.3-flash",
+      "price_usd_per_million": {
+        "input": 0.03,
+        "output": 0.5
+      },
+      "context_window": "1048576",
+      "function_calling": "true",
+      "planned_deprecation_date": "2026-11-20",
+      "blended_usd_per_million": 0.1475
+    },
+    {
+      "name": "@cf/meta/llama-3.1-8b-instruct-fp8",
+      "price_usd_per_million": {
+        "input": 0.152,
+        "output": 0.287
+      },
+      "context_window": "32000",
+      "planned_deprecation_date": "2026-11-20",
+      "blended_usd_per_million": 0.1857
+    },
+    {
+      "name": "@cf/meta/llama-3.2-11b-vision-instruct",
+      "price_usd_per_million": {
+        "input": 0.0485,
+        "output": 0.676
+      },
+      "context_window": "128000",
+      "blended_usd_per_million": 0.2054
+    },
+    {
+      "name": "@cf/openai/gpt-oss-20b",
+      "price_usd_per_million": {
+        "input": 0.2,
+        "output": 0.3
+      },
+      "context_window": "128000",
+      "function_calling": "true",
+      "blended_usd_per_million": 0.225
+    },
+    {
+      "name": "@cf/deepseek-ai/deepseek-v4.1-flash-1017",
+      "price_usd_per_million": {
+        "input": 0.006,
+        "output": 1.2
+      },
+      "context_window": "1048576",
+      "function_calling": "true",
+      "blended_usd_per_million": 0.3045
+    },
+    {
+      "name": "@cf/thinkingmachines/inkling-2-small",
+      "price_usd_per_million": {
+        "input": 0.1,
+        "output": 1
+      },
+      "context_window": "1048576",
+      "function_calling": "true",
+      "blended_usd_per_million": 0.325
+    },
+    {
+      "name": "@cf/deepseek-ai/deepseek-v4-flash-0731",
+      "price_usd_per_million": {
+        "input": 0.014,
+        "output": 1.32
+      },
+      "context_window": "1048576",
+      "function_calling": "true",
+      "planned_deprecation_date": "2026-11-20",
+      "blended_usd_per_million": 0.3405
+    },
+    {
+      "name": "@cf/meta/llama-guard-3-8b",
+      "price_usd_per_million": {
+        "input": 0.484,
+        "output": 0.03
+      },
+      "context_window": "131072",
+      "blended_usd_per_million": 0.3705
+    },
+    {
+      "name": "@cf/aisingapore/gemma-sea-lion-v4-27b-it",
+      "price_usd_per_million": {
+        "input": 0.351,
+        "output": 0.555
+      },
+      "context_window": "128000",
+      "blended_usd_per_million": 0.402
+    },
+    {
+      "name": "@cf/mistralai/mistral-small-3.1-24b-instruct",
+      "price_usd_per_million": {
+        "input": 0.351,
+        "output": 0.555
+      },
+      "context_window": "128000",
+      "function_calling": "true",
+      "blended_usd_per_million": 0.402
+    },
+    {
+      "name": "@cf/meta/llama-4-scout-17b-16e-instruct",
+      "price_usd_per_million": {
+        "input": 0.27,
+        "output": 0.85
+      },
+      "context_window": "131000",
+      "function_calling": "true",
+      "blended_usd_per_million": 0.415
+    },
+    {
+      "name": "@cf/openai/gpt-oss-120b",
+      "price_usd_per_million": {
+        "input": 0.35,
+        "output": 0.75
+      },
+      "context_window": "128000",
+      "function_calling": "true",
+      "blended_usd_per_million": 0.45
+    },
+    {
+      "name": "@cf/qwen/qwen2.5-coder-32b-instruct",
+      "price_usd_per_million": {
+        "input": 0.66,
+        "output": 1
+      },
+      "context_window": "32768",
+      "blended_usd_per_million": 0.745
+    },
+    {
+      "name": "@cf/qwen/qwq-32b",
+      "price_usd_per_million": {
+        "input": 0.66,
+        "output": 1
+      },
+      "context_window": "24000",
+      "planned_deprecation_date": "2026-11-20",
+      "blended_usd_per_million": 0.745
+    },
+    {
+      "name": "@cf/nvidia/nemotron-3-120b-a12b",
+      "price_usd_per_million": {
+        "input": 0.5,
+        "output": 1.5
+      },
+      "context_window": "256000",
+      "function_calling": "true",
+      "planned_deprecation_date": "2026-11-20",
+      "blended_usd_per_million": 0.75
+    },
+    {
+      "name": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+      "price_usd_per_million": {
+        "input": 0.293,
+        "output": 2.253
+      },
+      "context_window": "24000",
+      "function_calling": "true",
+      "blended_usd_per_million": 0.783
+    },
+    {
+      "name": "@cf/qwen/qwen3.8-27b",
+      "price_usd_per_million": {
+        "input": 0.05,
+        "output": 3.2
+      },
+      "context_window": "262144",
+      "function_calling": "true",
+      "blended_usd_per_million": 0.8375
+    },
+    {
+      "name": "@cf/deepseek-ai/deepseek-v4-pro-0813",
+      "price_usd_per_million": {
+        "input": 0.044,
+        "output": 3.96
+      },
+      "context_window": "1048576",
+      "function_calling": "true",
+      "planned_deprecation_date": "2026-11-20",
+      "blended_usd_per_million": 1.023
+    },
+    {
+      "name": "@cf/moonshotai/kimi-k2.6",
+      "price_usd_per_million": {
+        "input": 0.16,
+        "output": 4
+      },
+      "context_window": "262144",
+      "function_calling": "true",
+      "planned_deprecation_date": "2026-11-20",
+      "blended_usd_per_million": 1.12
+    },
+    {
+      "name": "@cf/moonshotai/kimi-k2.7-code",
+      "price_usd_per_million": {
+        "input": 0.19,
+        "output": 4
+      },
+      "context_window": "262144",
+      "function_calling": "true",
+      "planned_deprecation_date": "2026-11-20",
+      "blended_usd_per_million": 1.1425
+    },
+    {
+      "name": "@cf/zai-org/glm-5.3",
+      "price_usd_per_million": {
+        "input": 0.26,
+        "output": 4.4
+      },
+      "context_window": "1048576",
+      "function_calling": "true",
+      "blended_usd_per_million": 1.295
+    },
+    {
+      "name": "@cf/zai-org/glm-5.2",
+      "price_usd_per_million": {
+        "input": 0.26,
+        "output": 4.4
+      },
+      "context_window": "262144",
+      "function_calling": "true",
+      "planned_deprecation_date": "2026-11-20",
+      "blended_usd_per_million": 1.295
+    },
+    {
+      "name": "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
+      "price_usd_per_million": {
+        "input": 0.497,
+        "output": 4.881
+      },
+      "context_window": "80000",
+      "planned_deprecation_date": "2026-11-20",
+      "blended_usd_per_million": 1.593
+    },
+    {
+      "name": "@cf/google/gemma-2b-it-lora",
+      "price_usd_per_million": null,
+      "context_window": "8192",
+      "beta": "true",
+      "planned_deprecation_date": "2026-11-20"
+    },
+    {
+      "name": "@cf/cloudflare/clairic-flash",
+      "price_usd_per_million": null,
+      "context_window": "65536"
+    },
+    {
+      "name": "@cf/mistral/mistral-7b-instruct-v0.2-lora",
+      "price_usd_per_million": null,
+      "context_window": "15000"
+    },
+    {
+      "name": "@cf/utter-project/eurollm-9b-it",
+      "price_usd_per_million": null,
+      "context_window": "32000",
+      "function_calling": "true"
+    },
+    {
+      "name": "@cf/cloudflare/clef",
+      "price_usd_per_million": null,
+      "context_window": "65536"
+    },
+    {
+      "name": "@cf/meta-llama/llama-2-7b-chat-hf-lora",
+      "price_usd_per_million": null,
+      "context_window": "8192",
+      "beta": "true",
+      "planned_deprecation_date": "2026-11-20"
+    },
+    {
+      "name": "@cf/ibm-granite/granite-4.0-h-micro",
+      "price_usd_per_million": null,
+      "context_window": "131000",
+      "function_calling": "true"
+    },
+    {
+      "name": "@cf/cloudflare/clairic",
+      "price_usd_per_million": null,
+      "context_window": "65536"
+    },
+    {
+      "name": "@cf/swiss-ai/apertus-v1.5-8b",
+      "price_usd_per_million": null,
+      "context_window": "262144",
+      "function_calling": "true"
+    },
+    {
+      "name": "@cf/cloudflare/clef-omni",
+      "price_usd_per_million": null,
+      "context_window": "65536"
+    },
+    {
+      "name": "@cf/google/gemma-7b-it-lora",
+      "price_usd_per_million": null,
+      "context_window": "3500",
+      "beta": "true",
+      "planned_deprecation_date": "2026-11-20"
+    },
+    {
+      "name": "@cf/daily-co/phonellm-mini-alpha-2",
+      "price_usd_per_million": null,
+      "context_window": "262140",
+      "function_calling": "true"
+    },
+    {
+      "name": "@cf/cloudflare/clef-flash",
+      "price_usd_per_million": null,
+      "context_window": "24576"
+    }
+  ],
+  "passed": true,
+  "total_models": 41,
+  "without_parseable_price": 13,
+  "date_utc": "2026-11-19T23:21:44+00:00"
+}

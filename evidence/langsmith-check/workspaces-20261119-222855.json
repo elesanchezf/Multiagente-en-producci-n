@@ -1,0 +1,41 @@
+{
+  "local_validation": {
+    "LANGSMITH_API_KEY": {
+      "estado": "válido"
+    },
+    "LANGSMITH_ENDPOINT": {
+      "estado": "válido"
+    },
+    "LANGSMITH_ORGANIZATION_ID": {
+      "estado": "válido"
+    },
+    "LANGSMITH_WORKSPACE_ID": {
+      "estado": "no definido"
+    }
+  },
+  "http_status": 403,
+  "workspaces": [],
+  "passed": false,
+  "request_sent": true,
+  "endpoint_host": "api.smith.langchain.com",
+  "path": "/api/v1/workspaces",
+  "header_names_sent": [
+    "X-API-Key",
+    "X-Organization-Id"
+  ],
+  "error": {
+    "content_type": "application/problem+json",
+    "body_is_json": true,
+    "message": "Permission organization:read-metadata is not allowed for tracing keys"
+  },
+  "confirmed": [
+    "La petición llegó al servidor de LangSmith y fue rechazada con 403: la credencial se reconoció pero no tiene acceso a este recurso."
+  ],
+  "possible_causes_unconfirmed": [
+    "La clave no tiene el permiso organization:read-metadata.",
+    "Una clave de organización o de servicio puede requerir X-Organization-Id o un workspace (X-Tenant-Id); este diagnóstico no envió X-Tenant-Id y la ausencia del encabezado no permite concluir si el workspace es necesario.",
+    "La clave pertenece a otra organización o región (revise el endpoint).",
+    "La respuesta por sí sola no distingue entre estas causas; no están confirmadas."
+  ],
+  "date_utc": "2026-11-19T22:28:55+00:00"
+}

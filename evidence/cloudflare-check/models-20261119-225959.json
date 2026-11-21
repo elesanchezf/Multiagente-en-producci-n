@@ -1,0 +1,33 @@
+{
+  "local_validation": {
+    "CF_ACCOUNT_ID": "válido",
+    "CF_API_TOKEN": "válido"
+  },
+  "queries": [
+    {
+      "search": "llama-3.1-8b",
+      "http_status": 200
+    },
+    {
+      "search": "llama-3.3-70b",
+      "http_status": 200
+    }
+  ],
+  "candidates": {
+    "@cf/meta/llama-3.1-8b-instruct-fast": {
+      "listed": false
+    },
+    "@cf/meta/llama-3.1-8b-instruct-fp8-fast": {
+      "listed": false
+    },
+    "@cf/meta/llama-3.3-70b-instruct-fp8-fast": {
+      "listed": true,
+      "name": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+      "task": "Text Generation",
+      "context_window": "\"24000\"",
+      "price": "[{\"unit\": \"per M input tokens\", \"price\": 0.293, \"currency\": \"USD\"}, {\"unit\": \"per M output tokens\", \"price\": 2.253, \"currency\": \"USD\"}]"
+    }
+  },
+  "passed": true,
+  "date_utc": "2026-11-19T22:59:59+00:00"
+}

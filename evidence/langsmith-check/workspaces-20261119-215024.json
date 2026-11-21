@@ -1,0 +1,20 @@
+{
+  "endpoint_host": "api.smith.langchain.com",
+  "path": "/api/v1/workspaces",
+  "http_status": 403,
+  "workspaces": [],
+  "passed": false,
+  "sent_organization_id": false,
+  "sent_tenant_id": false,
+  "confirmed": [
+    "GET /api/v1/workspaces llegó al servidor de LangSmith y se rechazó con 403.",
+    "El rechazo ocurrió sin X-Tenant-Id: no depende de LANGSMITH_WORKSPACE_ID."
+  ],
+  "possible_causes_unconfirmed": [
+    "La clave es de ámbito de organización o de servicio y la API exige X-Organization-Id (defina LANGSMITH_ORGANIZATION_ID y repita).",
+    "La clave no tiene el permiso organization:read-metadata.",
+    "La clave fue revocada, es de otra organización o de otra región (revise LANGSMITH_ENDPOINT).",
+    "Esta respuesta no distingue entre esas causas; el cuerpo del error no se imprime."
+  ],
+  "date_utc": "2026-11-19T21:50:24+00:00"
+}

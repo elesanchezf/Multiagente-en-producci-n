@@ -1,0 +1,257 @@
+    i New version 1.29.0 available (installed version is 1.28.0) at https://github.com/docker/scout-cli
+    ! 'docker scout compare' is experimental and its behaviour might change in the future
+    v SBOM of image already cached, 145 packages indexed
+    v SBOM of image already cached, 127 packages indexed
+    ...Evaluating policies
+    v Policy evaluation completed
+    ...Evaluating policies
+    v Policy evaluation completed
+  
+  
+  ## Overview
+  
+                     │       Analyzed Image        │      Comparison Image       
+  ───────────────────┼─────────────────────────────┼─────────────────────────────
+   Target            │  python                     │  python                     
+     digest          │  e48f59cdba69               │  5e2bdb1b0d54               
+     tag             │  3.13-slim                  │  3.12-slim                  
+     platform        │ linux/amd64                 │ linux/amd64                 
+     vulnerabilities │    0C    14H    10M    28L  │    0C     8H    13M    28L  
+                     │           +6     -3         │                             
+     size            │ 43 MB (-199 kB)             │ 43 MB                       
+     packages        │ 145 (+18)                   │ 127                         
+                     │                             │                             
+   Base image        │  debian:13-slim             │  debian:13-slim             
+     tags            │ also known as               │ also known as               
+                     │   • 13.7-slim               │   • 13.7-slim               
+                     │   • trixie-20261104-slim    │   • trixie-20261104-slim    
+                     │   • trixie-slim             │   • trixie-slim             
+     vulnerabilities │    0C     8H     7M     7L  │    0C     8H     7M     7L  
+  
+  
+  ## Applied Filters
+  
+    • Only vulnerabilities with severity critical, high
+  
+  
+  
+  ## Environment Variables
+  
+  
+      GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305
+      LANG=C.UTF-8
+      PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    - PYTHON_SHA256=b5796915dc45ff745cfb4e990a7e7c93d6f546328a102ce31448d69ebc37575c
+    + PYTHON_SHA256=abb0102e6d4ae027509bcb82327d9dd85515b44a3ba8ad538cfc5e9847029f68
+    - PYTHON_VERSION=3.12.16
+    + PYTHON_VERSION=3.13.18
+  
+  
+  
+  ## Config
+  
+  
+      cmd=python3
+  
+  
+  
+  ## Policies
+  
+  
+  0 improved, 1 worsened
+  Health score  Analyzed  D  (50%)  Comparison  D  (50%)
+  
+    Policy                                       Analyzed  Comparison  Change             
+  
+    Default non-root user                        !         !                   No Change  
+    No copyleft licenses                         ! 362     ! 362               No Change  
+    No fixable critical or high vulnerabilities  ! 8       ! 2         +6      Worsened   
+    No high-profile vulnerabilities              v         v                   No Change  
+    No outdated base images                      v         v                   No Change  
+    No unapproved base images                    v         v                   No Change  
+    Supply chain attestations                    ! 2       ! 2                 No Change  
+  
+      View policy details → docker scout policy python@sha256:e48f59cdba69a3cbd9ed2cf0f348d90d45a8d350d98134cf1070bc106ee9ed90
+  
+  
+  ## Packages and Vulnerabilities
+  
+  
+    +   18 packages added  
+    ⎌    2 packages changed (↑ 2 upgraded, ↓ 0 downgraded)  
+       125 packages unchanged
+  
+  
+    + 6 vulnerabilities added
+  
+  
+     Package                  Type     Version                            Compared Version                   
+  
+     acl                      deb      2.3.2-2                            2.3.2-2                            
+     adduser                  deb      3.152                              3.152                              
+     apt                      deb      3.0.4                              3.0.4                              
+     attr                     deb      1:2.5.2-3                          1:2.5.2-3                          
+     audit                    deb      1:4.0.2-2+deb13u1                  1:4.0.2-2+deb13u1                  
+     base-files               deb      13.8+deb13u7                       13.8+deb13u7                       
+     base-passwd              deb      3.6.7                              3.6.7                              
+     bash                     deb      5.2.37-2+b10                       5.2.37-2+b10                       
+     bash                     generic  5.2.37                             5.2.37                             
+     bsdutils                 deb      1:2.41.5-0+deb13u1                 1:2.41.5-0+deb13u1                 
+     bzip2                    deb      1.0.8-6                            1.0.8-6                            
+     ca-certificates          deb      20250419+deb13u1                   20250419+deb13u1                   
+  +  cachecontrol             pypi     0.14.4                                                                
+     cdebconf                 deb      0.280                              0.280                              
+  +  certifi                  pypi     2026.10.19                                                            
+     coreutils                deb      9.7-3                              9.7-3                              
+     dash                     deb      0.5.12-12                          0.5.12-12                          
+     db5.3                    deb      5.3.28+dfsg2-9                     5.3.28+dfsg2-9                     
+     debconf                  deb      1.5.91                             1.5.91                             
+     debian-archive-keyring   deb      2025.1                             2025.1                             
+     debianutils              deb      5.23.2                             5.23.2                             
+     diffutils                deb      1:3.10-4                           1:3.10-4                           
+  +  distlib                  pypi     0.4.2                                                                 
+  +  distro                   pypi     1.9.0                                                                 
+     dpkg                     deb      1.22.22                            1.22.22                            
+     findutils                deb      4.10.0-3                           4.10.0-3                           
+     gcc-14                   deb      14.2.0-19                          14.2.0-19                          
+     gcc-14-base              deb      14.2.0-19                          14.2.0-19                          
+     gdbm                     deb      1.24-2                             1.24-2                             
+     glibc                    deb      2.41-12+deb13u4                    2.41-12+deb13u4                    
+     gmp                      deb      2:6.3.0+dfsg-3                     2:6.3.0+dfsg-3                     
+     grep                     deb      3.11-4                             3.11-4                             
+     gzip                     deb      1.13-1+deb13u1                     1.13-1+deb13u1                     
+     gzip                     generic  1.13                               1.13                               
+     hostname                 deb      3.25                               3.25                               
+  +  idna                     pypi     3.18                                                                  
+     init-system-helpers      deb      1.69~deb13u1                       1.69~deb13u1                       
+     libacl1                  deb      2.3.2-2+b1                         2.3.2-2+b1                         
+     libapt-pkg7.0            deb      3.0.4                              3.0.4                              
+     libattr1                 deb      1:2.5.2-3                          1:2.5.2-3                          
+     libaudit-common          deb      1:4.0.2-2+deb13u1                  1:4.0.2-2+deb13u1                  
+     libaudit1                deb      1:4.0.2-2+deb13u1                  1:4.0.2-2+deb13u1                  
+     libblkid1                deb      2.41.5-0+deb13u1                   2.41.5-0+deb13u1                   
+     libbsd                   deb      0.12.2-2                           0.12.2-2                           
+     libbsd0                  deb      0.12.2-2                           0.12.2-2                           
+     libbz2-1.0               deb      1.0.8-6                            1.0.8-6                            
+     libc-bin                 deb      2.41-12+deb13u4                    2.41-12+deb13u4                    
+     libc6                    deb      2.41-12+deb13u4                    2.41-12+deb13u4                    
+     libcap-ng                deb      0.8.5-4                            0.8.5-4                            
+     libcap-ng0               deb      0.8.5-4+b1                         0.8.5-4+b1                         
+     libcap2                  deb      1:2.75-10+deb13u1+b3               1:2.75-10+deb13u1+b3               
+     libcrypt1                deb      1:4.4.38-1                         1:4.4.38-1                         
+     libdb5.3t64              deb      5.3.28+dfsg2-9                     5.3.28+dfsg2-9                     
+     libdebconfclient0        deb      0.280                              0.280                              
+     libffi                   deb      3.4.8-2                            3.4.8-2                            
+     libffi8                  deb      3.4.8-2                            3.4.8-2                            
+     libgcc-s1                deb      14.2.0-19                          14.2.0-19                          
+     libgdbm6t64              deb      1.24-2                             1.24-2                             
+     libgmp10                 deb      2:6.3.0+dfsg-3                     2:6.3.0+dfsg-3                     
+     libhogweed6t64           deb      3.10.1-1                           3.10.1-1                           
+     liblastlog2-2            deb      2.41.5-0+deb13u1                   2.41.5-0+deb13u1                   
+     liblz4-1                 deb      1.10.0-4                           1.10.0-4                           
+     liblzma5                 deb      5.8.1-1+deb13u2                    5.8.1-1+deb13u2                    
+     libmd                    deb      1.1.0-2                            1.1.0-2                            
+     libmd0                   deb      1.1.0-2+b1                         1.1.0-2+b1                         
+     libmount1                deb      2.41.5-0+deb13u1                   2.41.5-0+deb13u1                   
+     libncursesw6             deb      6.5+20250216-2                     6.5+20250216-2                     
+     libnettle8t64            deb      3.10.1-1                           3.10.1-1                           
+     libpam-modules           deb      1.7.0-5                            1.7.0-5                            
+     libpam-modules-bin       deb      1.7.0-5                            1.7.0-5                            
+     libpam-runtime           deb      1.7.0-5                            1.7.0-5                            
+     libpam0g                 deb      1.7.0-5                            1.7.0-5                            
+     libpcre2-8-0             deb      10.46-1~deb13u3                    10.46-1~deb13u3                    
+     libreadline8t64          deb      8.2-6                              8.2-6                              
+     libseccomp               deb      2.6.0-2                            2.6.0-2                            
+     libseccomp2              deb      2.6.0-2                            2.6.0-2                            
+     libselinux               deb      3.8.1-1                            3.8.1-1                            
+     libselinux1              deb      3.8.1-1                            3.8.1-1                            
+     libsemanage              deb      3.8.1-1                            3.8.1-1                            
+     libsemanage-common       deb      3.8.1-1                            3.8.1-1                            
+     libsemanage2             deb      3.8.1-1                            3.8.1-1                            
+     libsepol                 deb      3.8.1-1                            3.8.1-1                            
+     libsepol2                deb      3.8.1-1                            3.8.1-1                            
+     libsmartcols1            deb      2.41.5-0+deb13u1                   2.41.5-0+deb13u1                   
+     libsqlite3-0             deb      3.46.1-7+deb13u2                   3.46.1-7+deb13u2                   
+     libssl3t64               deb      3.5.7-1~deb13u3                    3.5.7-1~deb13u3                    
+     libstdc++6               deb      14.2.0-19                          14.2.0-19                          
+     libsystemd0              deb      257.13-1~deb13u1                   257.13-1~deb13u1                   
+     libtinfo6                deb      6.5+20250216-2                     6.5+20250216-2                     
+     libudev1                 deb      257.13-1~deb13u1                   257.13-1~deb13u1                   
+     libuuid1                 deb      2.41.5-0+deb13u1                   2.41.5-0+deb13u1                   
+     libxcrypt                deb      1:4.4.38-1                         1:4.4.38-1                         
+     libxxhash0               deb      0.8.3-2                            0.8.3-2                            
+     libzstd                  deb      1.5.7+dfsg-1                       1.5.7+dfsg-1                       
+     libzstd1                 deb      1.5.7+dfsg-1                       1.5.7+dfsg-1                       
+     login                    deb      1:4.16.0-2+really2.41.5-0+deb13u1  1:4.16.0-2+really2.41.5-0+deb13u1  
+     login.defs               deb      1:4.17.4-2                         1:4.17.4-2                         
+     lz4                      deb      1.10.0-4                           1.10.0-4                           
+     mawk                     deb      1.3.4.20250131-1                   1.3.4.20250131-1                   
+     mount                    deb      2.41.5-0+deb13u1                   2.41.5-0+deb13u1                   
+  +  msgpack                  pypi     1.1.2                                                                 
+     ├─  +  HIGH         GHSA-6v7p-g79w-8964 [https://scout.docker.com/v/GHSA-6v7p-g79w-8964?s=github&n=msgpack&t=pypi&vr=%3C%3D1.2.0]     
+     │                   7.5  Use After Free                                                                  
+     │                   v fixed in  1.2.1    
+     ├─  +  HIGH         CVE-2026-57585  [https://scout.docker.com/v/CVE-2026-57585?s=pypa&n=msgpack&t=pypi&vr=%3C1.2.1]                   
+     │                   7.5                                                                                  
+     │                   v fixed in  1.2.1    
+     └─  +  HIGH         CVE-2026-114613 [https://scout.docker.com/v/CVE-2026-114613?s=github&n=msgpack&t=pypi&vr=%3C1.2.3]                
+                         7.5  Missing Release of Memory after Effective Lifetime                              
+                         v fixed in  1.2.3    
+  
+     ncurses                  deb      6.5+20250216-2                     6.5+20250216-2                     
+     ncurses-base             deb      6.5+20250216-2                     6.5+20250216-2                     
+     ncurses-bin              deb      6.5+20250216-2                     6.5+20250216-2                     
+     netbase                  deb      6.5                                6.5                                
+     nettle                   deb      3.10.1-1                           3.10.1-1                           
+     openssl                  deb      3.5.7-1~deb13u3                    3.5.7-1~deb13u3                    
+     openssl                  generic  3.5.7                              3.5.7                              
+     openssl-provider-legacy  deb      3.5.7-1~deb13u3                    3.5.7-1~deb13u3                    
+  +  packaging                pypi     26.2                                                                  
+     pam                      deb      1.7.0-5                            1.7.0-5                            
+     passwd                   deb      1:4.17.4-2                         1:4.17.4-2                         
+     pcre2                    deb      10.46-1~deb13u3                    10.46-1~deb13u3                    
+     perl                     deb      5.40.1-6+deb13u1                   5.40.1-6+deb13u1                   
+     perl-base                deb      5.40.1-6+deb13u1                   5.40.1-6+deb13u1                   
+  ↑  pip                      pypi     26.2.2                             25.0.1                             
+  +  platformdirs             pypi     4.10.0                                                                
+  +  pygments                 pypi     2.20.0                                                                
+  +  pyproject-hooks          pypi     1.2.0                                                                 
+  ↑  python                   generic  3.13.18                            3.12.16                            
+     readline                 deb      8.2-6                              8.2-6                              
+     readline-common          deb      8.2-6                              8.2-6                              
+  +  requests                 pypi     2.34.2                                                                
+  +  resolvelib               pypi     1.2.1                                                                 
+  +  rich                     pypi     14.2.0                                                                
+     rust-sequoia-sqv         deb      1.3.0-3                            1.3.0-3                            
+     sed                      deb      4.9-2+deb13u1                      4.9-2+deb13u1                      
+  +  setuptools               pypi     70.3.0                                                                
+     └─  +  HIGH         CVE-2025-47273  [https://scout.docker.com/v/CVE-2025-47273?s=github&n=setuptools&t=pypi&vr=%3C78.1.1]             
+                         7.7  Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')  
+                         v fixed in  78.1.1   
+  
+     shadow                   deb      1:4.17.4-2                         1:4.17.4-2                         
+     sqlite3                  deb      3.46.1-7+deb13u2                   3.46.1-7+deb13u2                   
+     sqv                      deb      1.3.0-3+b2                         1.3.0-3+b2                         
+     systemd                  deb      257.13-1~deb13u1                   257.13-1~deb13u1                   
+     sysvinit                 deb      3.14-4                             3.14-4                             
+     sysvinit-utils           deb      3.14-4                             3.14-4                             
+     tar                      deb      1.35+dfsg-3.1                      1.35+dfsg-3.1                      
+  +  tomli                    pypi     2.4.1                                                                 
+  +  tomli-w                  pypi     1.2.0                                                                 
+  +  truststore               pypi     0.10.4                                                                
+     tzdata                   deb      2026f-0+deb13u1                    2026f-0+deb13u1                    
+  +  urllib3                  pypi     2.7.0                                                                 
+     ├─  +  HIGH         CVE-2026-97689  [https://scout.docker.com/v/CVE-2026-97689?s=github&n=urllib3&t=pypi&vr=%3E%3D1.10.3%2C%3C2.8.0]  
+     │                   8.9  Allocation of Resources Without Limits or Throttling                            
+     │                   v fixed in  2.8.0    
+     └─  +  HIGH         CVE-2026-97687  [https://scout.docker.com/v/CVE-2026-97687?s=github&n=urllib3&t=pypi&vr=%3E%3D1.26.0%2C%3C2.8.0]  
+                         7.6  Improper Certificate Validation                                                 
+                         v fixed in  2.8.0    
+  
+     util-linux               deb      2.41.5-0+deb13u1                   2.41.5-0+deb13u1                   
+     xxhash                   deb      0.8.3-2                            0.8.3-2                            
+     xz-utils                 deb      5.8.1-1+deb13u2                    5.8.1-1+deb13u2                    
+     zlib                     deb      1:1.3.dfsg+really1.3.1-1           1:1.3.dfsg+really1.3.1-1           
+     zlib1g                   deb      1:1.3.dfsg+really1.3.1-1+b1        1:1.3.dfsg+really1.3.1-1+b1        
+  
+  
