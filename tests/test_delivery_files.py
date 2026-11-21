@@ -74,7 +74,8 @@ def test_the_render_blueprint_is_a_separate_service_with_the_evaluated_variant()
         "LANGSMITH_TRACING": "true",
     }
     for key, value in expected.items():
-        assert re.search(rf'key: {key}\s+value: "?{re.escape(value)}"?\s', blueprint), key
+        pattern = rf'key: {key}\s+value: "?{re.escape(value)}"?\s'
+        assert re.search(pattern, blueprint), key
     match = re.search(r"key: MODEL_EXTRA_PARAMS\s+value: '(.*)'", blueprint)
     params = json.loads(match.group(1))
     gemma = params["@cf/google/gemma-4-26b-a4b-it"]
