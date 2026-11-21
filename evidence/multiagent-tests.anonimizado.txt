@@ -1,0 +1,63 @@
+[ANONIMIZADO] Copia para entrega: se sustituyeron rutas y nombres de usuario locales por marcadores. El original se conserva solo en local.
+============================= test session starts =============================
+platform win32 -- Python 3.12.16, pytest-9.2.0, pluggy-1.7.0
+rootdir: <RAIZ_DEL_PROYECTO>
+plugins: anyio-4.16.0, langsmith-0.15.0, platformdirs-4.14.7, bdd-9.0.1, cov-7.1.0, playwright-0.10.0
+collected 141 items
+
+tests\test_agent.py ......                                               [  4%]
+tests\test_api_steps.py ..........                                       [ 11%]
+tests\test_auth.py ...                                                   [ 13%]
+tests\test_clock.py ..                                                   [ 14%]
+tests\test_cloudflare_auth.py ................                           [ 26%]
+tests\test_compliance.py ...                                             [ 28%]
+tests\test_config.py .....                                               [ 31%]
+tests\test_costs_api.py ..                                               [ 33%]
+tests\test_costs_config.py ........                                      [ 39%]
+tests\test_costs_steps.py ......                                         [ 43%]
+tests\test_delivery_files.py .....                                       [ 46%]
+tests\test_directory.py ....                                             [ 49%]
+tests\test_gateway.py ......                                             [ 53%]
+tests\test_llm.py ....                                                   [ 56%]
+tests\test_metrics.py .....                                              [ 60%]
+tests\test_multiagent.py ...............                                 [ 70%]
+tests\test_observability.py ...                                          [ 73%]
+tests\test_observability_steps.py ........                               [ 78%]
+tests\test_pricing.py ....                                               [ 81%]
+tests\test_ratelimit.py ..                                               [ 82%]
+tests\test_router.py ........                                            [ 88%]
+tests\test_security_config.py ...                                        [ 90%]
+tests\test_security_steps.py ......                                      [ 95%]
+tests\test_security_tracing.py .                                         [ 95%]
+tests\test_smoke.py ..                                                   [ 97%]
+tests\test_static_page.py ..                                             [ 98%]
+tests\test_tracing.py ..                                                 [100%]
+
+=============================== tests coverage ================================
+______________ coverage: platform win32, python 3.12.16-final-0 _______________
+
+Name                   Stmts   Miss  Cover
+------------------------------------------
+app\__init__.py            0      0   100%
+app\agent.py             128      4    97%
+app\auth.py               35      0   100%
+app\clock.py              20      0   100%
+app\compliance.py         19      0   100%
+app\config.py            112      2    98%
+app\directory.py          36      1    97%
+app\errors.py              1      0   100%
+app\gateway.py            46      1    98%
+app\llm.py                50      3    94%
+app\main.py              129      5    96%
+app\metrics.py            39      0   100%
+app\models.py             10      1    90%
+app\multiagent.py         79      0   100%
+app\observability.py      35      0   100%
+app\pricing.py            31      2    94%
+app\ratelimit.py          30      0   100%
+app\router.py             21      0   100%
+app\tracing.py            35      7    80%
+------------------------------------------
+TOTAL                    856     26    97%
+Required test coverage of 80% reached. Total coverage: 96.96%
+============================= 141 passed in 5.72s =============================

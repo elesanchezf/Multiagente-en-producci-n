@@ -93,6 +93,9 @@
         var data = await response.json();
         showRequestId(data.request_id || response.headers.get("X-Request-ID"));
         addLine(data.answer, "assistant");
+        if (data.review_status === "approved") {
+          addLine("Respuesta contrastada con los datos del directorio.", "tools");
+        }
         var tools = data.tools_used.length ? data.tools_used.join(", ") : "ninguna";
         addLine("Herramientas usadas: " + tools, "tools");
         conversation.push({ role: "user", content: question });

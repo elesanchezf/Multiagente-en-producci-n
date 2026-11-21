@@ -1,0 +1,3 @@
+[MAIN]
+# Los scripts de scripts/ importan el paquete app desde la raiz del repositorio.
+init-hook='import sys; sys.path.insert(0, ".")'

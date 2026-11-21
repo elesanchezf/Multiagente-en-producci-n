@@ -1,0 +1,25 @@
+{
+  "local_validation": {
+    "LANGSMITH_API_KEY": {
+      "estado": "válido"
+    },
+    "LANGSMITH_ENDPOINT": {
+      "estado": "válido"
+    },
+    "LANGSMITH_ORGANIZATION_ID": {
+      "estado": "inválido",
+      "problemas": [
+        "no_es_uuid"
+      ]
+    },
+    "LANGSMITH_WORKSPACE_ID": {
+      "estado": "no definido"
+    }
+  },
+  "http_status": null,
+  "workspaces": [],
+  "passed": false,
+  "request_sent": false,
+  "stage": "local_validation_failed",
+  "date_utc": "2026-11-19T22:27:26+00:00"
+}

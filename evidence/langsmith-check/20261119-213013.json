@@ -1,0 +1,29 @@
+{
+  "project": "multiagente-reto-revision",
+  "read_only": false,
+  "steps": {
+    "read_access": {
+      "ok": false,
+      "error_type": "LangSmithError",
+      "http_status": 403
+    },
+    "read_project": {
+      "ok": false,
+      "error_type": "LangSmithError",
+      "http_status": 403
+    },
+    "write_access": {
+      "ok": false,
+      "error_type": "LangSmithError",
+      "http_status": 403
+    }
+  },
+  "passed": false,
+  "variables": {
+    "LANGSMITH_API_KEY": "definida",
+    "LANGSMITH_ENDPOINT": "definida",
+    "LANGSMITH_WORKSPACE_ID": "vacía",
+    "LANGSMITH_PROJECT": "definida"
+  },
+  "date_utc": "2026-11-19T21:30:13+00:00"
+}

@@ -1,0 +1,26 @@
+{
+  "date_utc": "2026-11-19T20:00:06+00:00",
+  "scope": "Local, un proceso uvicorn, modelo simulado, datos ficticios; no mide Render, Cloudflare ni LangSmith",
+  "requests": 300,
+  "concurrent_workers": 30,
+  "status_counts": {
+    "200": 300
+  },
+  "errors_non_200": 0,
+  "isolated_correct_responses": 300,
+  "request_id_echo_ok": 300,
+  "wall_seconds": 0.937,
+  "throughput_rps": 320.1,
+  "latency_ms": {
+    "min": 50.4,
+    "mean": 88.9,
+    "p50": 89.3,
+    "p95": 96.4,
+    "p99": 104.6,
+    "max": 109.6
+  },
+  "server_metrics": {
+    "requests": 301,
+    "cost_usd": 0.005876999999999978
+  }
+}

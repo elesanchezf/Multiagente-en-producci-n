@@ -1,32 +1,71 @@
-# Blueprint de Render para el HR Assistant.
-# Limitacion conocida: los intentos con clave invalida no tienen limite por
-# origen; el limite de peticiones aplica por cliente ya autenticado.
+# Blueprint de Render del reto "Multiagente en produccion".
+# Servicio SEPARADO del HR Assistant de la sesion 4 (hr-assistant): este archivo
+# crea el servicio "multiagente-reto" y no toca el existente. Si ya hubiera un
+# servicio con este nombre en la cuenta, Render lo actualizaria: verificar antes.
+# Reproduce la variante "optimized" evaluada (evidence/resultado-comparacion-E06.md).
+# Los secretos (sync: false) se cargan en el panel de Render, nunca en el repositorio.
 # No se publica en Render sin una aprobacion separada de una persona.
-# El nombre del servicio es igual al del repositorio. Si ya existe un servicio
-# con este nombre en la cuenta, Render lo actualizaria en lugar de crear uno.
+# Limitacion conocida: los intentos con clave invalida no tienen limite por origen;
+# el limite de peticiones aplica por cliente ya autenticado.
 services:
   - type: web
-    name: hr-assistant
+    name: multiagente-reto
     runtime: docker
     plan: free
     healthCheckPath: /health
     # Render publica solo si el pipeline de CI pasa.
     autoDeployTrigger: checksPass
     envVars:
+      - key: SERVICE_NAME
+        value: multiagente-reto
+      # Produccion: activa las reglas de compliance (proveedor real, claves largas,
+      # trazas con entradas y salidas ocultas).
       - key: ENVIRONMENT
         value: production
       - key: MODEL_PROVIDER
         value: gateway
+      # Modelos de la variante evaluada: Gemma como modelo pequeno, 70B como capaz.
+      - key: MODEL_SMALL
+        value: "@cf/google/gemma-4-26b-a4b-it"
+      - key: MODEL_LARGE
+        value: "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
+      # Parametros de Gemma validados en la comparacion real (solo aplican a Gemma).
+      - key: MODEL_EXTRA_PARAMS
+        value: '{"@cf/google/gemma-4-26b-a4b-it":{"chat_template_kwargs":{"enable_thinking":false},"response_format":{"type":"json_object"}}}'
+      - key: ROUTING
+        value: "true"
+      - key: HISTORY_WINDOW
+        value: "6"
+      - key: AGENT_MAX_STEPS
+        value: "3"
+      - key: MODEL_MAX_TOKENS
+        value: "300"
+      - key: MODEL_TEMPERATURE
+        value: "0"
+      # La cache del gateway esta apagada, como en la evaluacion.
+      - key: CACHE_TTL_SECONDS
+        value: "0"
+      - key: RATE_LIMIT_PER_MINUTE
+        value: "30"
+      # Observabilidad: trazas en LangSmith sin contenido de preguntas ni respuestas.
+      - key: LANGSMITH_TRACING
+        value: "true"
+      - key: LANGSMITH_PROJECT
+        value: multiagente-reto
       - key: HIDE_INPUTS
         value: "true"
       - key: HIDE_OUTPUTS
         value: "true"
-      # Secretos: se escriben en Render, nunca en el repositorio.
+      # Secretos y datos de cuenta: se escriben en Render.
       - key: API_KEYS
         sync: false
       - key: CF_ACCOUNT_ID
         sync: false
+      - key: CF_GATEWAY_ID
+        sync: false
       - key: CF_API_TOKEN
         sync: false
       - key: CF_AIG_TOKEN
+        sync: false
+      - key: LANGSMITH_API_KEY
         sync: false

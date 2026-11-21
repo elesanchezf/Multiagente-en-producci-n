@@ -1,8 +1,9 @@
 """Configuración del servicio a partir de variables de entorno."""
 
+import json
 import os
 from dataclasses import dataclass, field
-from typing import Dict, Mapping, Optional
+from typing import Any, Dict, Mapping, Optional
 
 from app.auth import parse_api_keys
 from app.errors import ConfigError
@@ -12,8 +13,10 @@ DEFAULT_ENVIRONMENT = "development"
 DEFAULT_RATE_LIMIT_PER_MINUTE = 30
 SUPPORTED_PROVIDERS = ("fake", "gateway")
 REQUIRED_GATEWAY_VARIABLES = ("CF_ACCOUNT_ID", "CF_GATEWAY_ID", "CF_API_TOKEN")
-DEFAULT_MODEL_SMALL = "@cf/meta/llama-3.1-8b-instruct-fast"
+# Único modelo con precio verificado en el catálogo de la cuenta (19-nov-2026).
 DEFAULT_MODEL_LARGE = "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
+# Provisional: sin un modelo pequeño verificado, el enrutador usa el mismo modelo.
+DEFAULT_MODEL_SMALL = DEFAULT_MODEL_LARGE
 DEFAULT_ROUTER_MAX_CHARS = 80
 DEFAULT_HISTORY_WINDOW = 6
 DEFAULT_MODEL_MAX_TOKENS = 300
@@ -130,6 +133,52 @@ class Config(_GatewaySettings):
     environment: str = DEFAULT_ENVIRONMENT
     api_keys: Dict[str, str] = field(default_factory=dict, repr=False, compare=False)
     rate_limit_per_minute: int = DEFAULT_RATE_LIMIT_PER_MINUTE
+    model_extra_params: Dict[str, Dict[str, Any]] = field(
+        default_factory=dict, compare=False)
+
+
+# Parámetros adicionales permitidos por modelo (lista cerrada: no pueden
+# sobrescribir ``model``, ``messages``, ``max_tokens`` ni ``temperature``).
+EXTRA_PARAM_RULES = {
+    "chat_template_kwargs": ("enable_thinking", "clear_thinking"),
+    "response_format": ("type",),
+}
+RESPONSE_FORMAT_TYPES = ("json_object", "text")
+
+
+def parse_model_extra_params(raw: str) -> Dict[str, Dict[str, Any]]:
+    """Valida ``MODEL_EXTRA_PARAMS``: JSON ``{modelo: {parámetro: valor}}``.
+
+    Solo se admiten ``chat_template_kwargs`` (``enable_thinking`` y
+    ``clear_thinking`` booleanos) y ``response_format`` (``type`` igual a
+    ``json_object`` o ``text``).
+
+    :param raw: Texto JSON; vacío significa sin parámetros adicionales.
+    :return: El mapeo validado.
+    :raises ConfigError: Si el formato es inválido (el mensaje no incluye valores).
+    """
+    if not raw.strip():
+        return {}
+    try:
+        data = json.loads(raw)
+    except ValueError:
+        raise ConfigError("MODEL_EXTRA_PARAMS must be valid JSON") from None
+    if not isinstance(data, dict) or not all(
+            isinstance(name, str) and isinstance(params, dict)
+            for name, params in data.items()):
+        raise ConfigError("MODEL_EXTRA_PARAMS must map model names to objects")
+    for params in data.values():
+        for key, value in params.items():
+            allowed = EXTRA_PARAM_RULES.get(key)
+            if allowed is None or not isinstance(value, dict) or any(
+                    inner not in allowed for inner in value):
+                raise ConfigError(f"MODEL_EXTRA_PARAMS has an unsupported entry: {key}")
+        kwargs = params.get("chat_template_kwargs", {})
+        fmt = params.get("response_format", {})
+        if not all(isinstance(flag, bool) for flag in kwargs.values()) or (
+                fmt and fmt.get("type") not in RESPONSE_FORMAT_TYPES):
+            raise ConfigError("MODEL_EXTRA_PARAMS has an invalid value")
+    return data
 
 
 def _boolean(env: Mapping[str, str], name: str, default: bool) -> bool:
@@ -288,5 +337,8 @@ def load_config(env: Optional[Mapping[str, str]] = None) -> Config:
         api_keys=parse_api_keys(env.get("API_KEYS") or ""),
         rate_limit_per_minute=_positive_int(
             env, "RATE_LIMIT_PER_MINUTE", DEFAULT_RATE_LIMIT_PER_MINUTE
+        ),
+        model_extra_params=parse_model_extra_params(
+            env.get("MODEL_EXTRA_PARAMS") or ""
         ),
     )

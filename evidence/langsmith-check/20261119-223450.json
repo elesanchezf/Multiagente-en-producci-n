@@ -1,0 +1,26 @@
+{
+  "project": "multiagente-reto-revision",
+  "read_only": false,
+  "steps": {
+    "read_access": {
+      "ok": true
+    },
+    "read_project": {
+      "ok": true,
+      "project_exists": true
+    },
+    "write_access": {
+      "ok": true,
+      "marker": "lscheck-fcea572eed2d",
+      "readback": true
+    }
+  },
+  "passed": true,
+  "variables": {
+    "LANGSMITH_API_KEY": "definida",
+    "LANGSMITH_ENDPOINT": "definida",
+    "LANGSMITH_WORKSPACE_ID": "definida",
+    "LANGSMITH_PROJECT": "definida"
+  },
+  "date_utc": "2026-11-19T22:34:50+00:00"
+}

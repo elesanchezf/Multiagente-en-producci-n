@@ -1,0 +1,54 @@
+INFO:     Started server process [40096]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8014 (Press CTRL+C to quit)
+{"ts": "2026-11-19T19:43:30.769466Z", "service": "hr-assistant", "event": "request", "request_id": "237a40c2-b2a5-4136-a311-7d29df865194", "method": "GET", "path": "/health", "status": 200, "latency_ms": 12}
+INFO:     127.0.0.1:51592 - "GET /health HTTP/1.1" 200 OK
+{"ts": "2026-11-19T19:43:36.156760Z", "service": "hr-assistant", "event": "request", "request_id": "a7ca4f4a-047e-4bc0-bf42-b3742b738a47", "method": "GET", "path": "/", "status": 200, "latency_ms": 36}
+INFO:     127.0.0.1:59378 - "GET / HTTP/1.1" 200 OK
+{"ts": "2026-11-19T19:43:38.124537Z", "service": "hr-assistant", "event": "handoff", "request_id": "69e6eaa6-9526-4b27-bf04-4b1a3263a7a7", "client": "evidence", "source": "coordinator", "target": "directory"}
+{"ts": "2026-11-19T19:43:38.124537Z", "service": "hr-assistant", "event": "agent_run", "request_id": "69e6eaa6-9526-4b27-bf04-4b1a3263a7a7", "client": "evidence", "question_chars": 41, "history_messages": 0, "steps": 1, "tools": [], "input_tokens": 63, "output_tokens": 9, "model": "@cf/meta/llama-3.1-8b-instruct-fast", "route": "default", "cached_calls": 0, "cost_usd": 6.291e-06, "stopped": "answer"}
+{"ts": "2026-11-19T19:43:38.124537Z", "service": "hr-assistant", "event": "workflow_completed", "request_id": "69e6eaa6-9526-4b27-bf04-4b1a3263a7a7", "client": "evidence", "agents": ["coordinator", "directory"], "review_status": "no_evidence", "cost_usd": 6.291e-06}
+{"ts": "2026-11-19T19:43:38.125536Z", "service": "hr-assistant", "event": "request", "request_id": "69e6eaa6-9526-4b27-bf04-4b1a3263a7a7", "client": "evidence", "method": "POST", "path": "/ask", "status": 200, "latency_ms": 3}
+INFO:     127.0.0.1:59378 - "POST /ask HTTP/1.1" 200 OK
+{"ts": "2026-11-19T19:43:38.256134Z", "service": "hr-assistant", "event": "request", "request_id": "adfae4ba-7bea-4b28-8a7c-e7aa42f9cbb9", "method": "GET", "path": "/", "status": 200, "latency_ms": 2}
+INFO:     127.0.0.1:59379 - "GET / HTTP/1.1" 200 OK
+{"ts": "2026-11-19T19:43:38.354805Z", "service": "hr-assistant", "event": "handoff", "request_id": "69c28948-8c8e-41dc-b1a5-dfd9e99a775a", "client": "evidence", "source": "coordinator", "target": "directory"}
+{"ts": "2026-11-19T19:43:38.354805Z", "service": "hr-assistant", "event": "agent_run", "request_id": "69c28948-8c8e-41dc-b1a5-dfd9e99a775a", "client": "evidence", "question_chars": 41, "history_messages": 0, "steps": 1, "tools": [], "input_tokens": 63, "output_tokens": 9, "model": "@cf/meta/llama-3.1-8b-instruct-fast", "route": "default", "cached_calls": 0, "cost_usd": 6.291e-06, "stopped": "answer"}
+{"ts": "2026-11-19T19:43:38.354805Z", "service": "hr-assistant", "event": "workflow_completed", "request_id": "69c28948-8c8e-41dc-b1a5-dfd9e99a775a", "client": "evidence", "agents": ["coordinator", "directory"], "review_status": "no_evidence", "cost_usd": 6.291e-06}
+{"ts": "2026-11-19T19:43:38.355804Z", "service": "hr-assistant", "event": "request", "request_id": "69c28948-8c8e-41dc-b1a5-dfd9e99a775a", "client": "evidence", "method": "POST", "path": "/ask", "status": 200, "latency_ms": 2}
+INFO:     127.0.0.1:59379 - "POST /ask HTTP/1.1" 200 OK
+{"ts": "2026-11-19T19:43:38.494972Z", "service": "hr-assistant", "event": "request", "request_id": "1c52d97f-536d-4907-a249-ebadc8f529a3", "method": "GET", "path": "/", "status": 200, "latency_ms": 2}
+INFO:     127.0.0.1:59380 - "GET / HTTP/1.1" 200 OK
+{"ts": "2026-11-19T19:43:38.587897Z", "service": "hr-assistant", "event": "handoff", "request_id": "e6900a2b-cfc6-407b-b799-649688d665c9", "client": "evidence", "source": "coordinator", "target": "directory"}
+{"ts": "2026-11-19T19:43:38.588896Z", "service": "hr-assistant", "event": "agent_run", "request_id": "e6900a2b-cfc6-407b-b799-649688d665c9", "client": "evidence", "question_chars": 41, "history_messages": 0, "steps": 1, "tools": [], "input_tokens": 63, "output_tokens": 9, "model": "@cf/meta/llama-3.1-8b-instruct-fast", "route": "default", "cached_calls": 0, "cost_usd": 6.291e-06, "stopped": "answer"}
+{"ts": "2026-11-19T19:43:38.588896Z", "service": "hr-assistant", "event": "workflow_completed", "request_id": "e6900a2b-cfc6-407b-b799-649688d665c9", "client": "evidence", "agents": ["coordinator", "directory"], "review_status": "no_evidence", "cost_usd": 6.291e-06}
+{"ts": "2026-11-19T19:43:38.589898Z", "service": "hr-assistant", "event": "request", "request_id": "e6900a2b-cfc6-407b-b799-649688d665c9", "client": "evidence", "method": "POST", "path": "/ask", "status": 200, "latency_ms": 2}
+INFO:     127.0.0.1:59380 - "POST /ask HTTP/1.1" 200 OK
+{"ts": "2026-11-19T19:43:38.717470Z", "service": "hr-assistant", "event": "request", "request_id": "4894611b-39c4-4273-80d5-ce5bde71d3fc", "method": "GET", "path": "/", "status": 200, "latency_ms": 2}
+INFO:     127.0.0.1:59381 - "GET / HTTP/1.1" 200 OK
+{"ts": "2026-11-19T19:43:38.969643Z", "service": "hr-assistant", "event": "request", "request_id": "2565a467-ad19-4639-9737-a2bf435572ed", "method": "GET", "path": "/", "status": 200, "latency_ms": 2}
+INFO:     127.0.0.1:59382 - "GET / HTTP/1.1" 200 OK
+{"ts": "2026-11-19T19:43:39.092137Z", "service": "hr-assistant", "event": "handoff", "request_id": "3a16e1c7-911b-43e1-8c09-3ec0bb5c6a71", "client": "evidence", "source": "coordinator", "target": "directory"}
+{"ts": "2026-11-19T19:43:39.092137Z", "service": "hr-assistant", "event": "agent_run", "request_id": "3a16e1c7-911b-43e1-8c09-3ec0bb5c6a71", "client": "evidence", "question_chars": 41, "history_messages": 0, "steps": 1, "tools": [], "input_tokens": 63, "output_tokens": 9, "model": "@cf/meta/llama-3.1-8b-instruct-fast", "route": "default", "cached_calls": 0, "cost_usd": 6.291e-06, "stopped": "answer"}
+{"ts": "2026-11-19T19:43:39.092137Z", "service": "hr-assistant", "event": "workflow_completed", "request_id": "3a16e1c7-911b-43e1-8c09-3ec0bb5c6a71", "client": "evidence", "agents": ["coordinator", "directory"], "review_status": "no_evidence", "cost_usd": 6.291e-06}
+{"ts": "2026-11-19T19:43:39.093138Z", "service": "hr-assistant", "event": "request", "request_id": "3a16e1c7-911b-43e1-8c09-3ec0bb5c6a71", "client": "evidence", "method": "POST", "path": "/ask", "status": 200, "latency_ms": 2}
+INFO:     127.0.0.1:59382 - "POST /ask HTTP/1.1" 200 OK
+{"ts": "2026-11-19T19:43:39.172828Z", "service": "hr-assistant", "event": "handoff", "request_id": "f0b20064-d74c-4472-a949-25ac1cc39295", "client": "evidence", "source": "coordinator", "target": "directory"}
+{"ts": "2026-11-19T19:43:39.173804Z", "service": "hr-assistant", "event": "agent_run", "request_id": "f0b20064-d74c-4472-a949-25ac1cc39295", "client": "evidence", "question_chars": 26, "history_messages": 2, "steps": 1, "tools": [], "input_tokens": 77, "output_tokens": 9, "model": "@cf/meta/llama-3.1-8b-instruct-fast", "route": "default", "cached_calls": 0, "cost_usd": 6.9209999999999995e-06, "stopped": "answer"}
+{"ts": "2026-11-19T19:43:39.173804Z", "service": "hr-assistant", "event": "workflow_completed", "request_id": "f0b20064-d74c-4472-a949-25ac1cc39295", "client": "evidence", "agents": ["coordinator", "directory"], "review_status": "no_evidence", "cost_usd": 6.9209999999999995e-06}
+{"ts": "2026-11-19T19:43:39.174793Z", "service": "hr-assistant", "event": "request", "request_id": "f0b20064-d74c-4472-a949-25ac1cc39295", "client": "evidence", "method": "POST", "path": "/ask", "status": 200, "latency_ms": 4}
+INFO:     127.0.0.1:59382 - "POST /ask HTTP/1.1" 200 OK
+{"ts": "2026-11-19T19:43:39.363949Z", "service": "hr-assistant", "event": "request", "request_id": "d4263f28-2cf6-4df2-a7f7-ffa63292ebc8", "method": "GET", "path": "/", "status": 200, "latency_ms": 2}
+INFO:     127.0.0.1:59383 - "GET / HTTP/1.1" 200 OK
+{"ts": "2026-11-19T19:43:39.473294Z", "service": "hr-assistant", "event": "request", "request_id": "3afcc1c8-9bcb-4b62-b120-8b2ef08b5f89", "method": "POST", "path": "/ask", "status": 401, "latency_ms": 0}
+INFO:     127.0.0.1:59383 - "POST /ask HTTP/1.1" 401 Unauthorized
+{"ts": "2026-11-19T19:43:39.631707Z", "service": "hr-assistant", "event": "request", "request_id": "06fb1c8d-bdb3-44a8-a9a1-aea4838108b7", "method": "GET", "path": "/", "status": 200, "latency_ms": 2}
+INFO:     127.0.0.1:59384 - "GET / HTTP/1.1" 200 OK
+{"ts": "2026-11-19T19:43:39.741859Z", "service": "hr-assistant", "event": "handoff", "request_id": "9a750e8d-2e13-4b3a-83e1-8da83144fba8", "client": "evidence", "source": "coordinator", "target": "directory"}
+{"ts": "2026-11-19T19:43:39.741859Z", "service": "hr-assistant", "event": "audit", "request_id": "9a750e8d-2e13-4b3a-83e1-8da83144fba8", "client": "evidence", "action": "tool_call", "tool": "get_employee", "args": {"employee_id": "EMP-0003"}}
+{"ts": "2026-11-19T19:43:39.742888Z", "service": "hr-assistant", "event": "agent_run", "request_id": "9a750e8d-2e13-4b3a-83e1-8da83144fba8", "client": "evidence", "question_chars": 31, "history_messages": 0, "steps": 2, "tools": ["get_employee"], "input_tokens": 140, "output_tokens": 22, "model": "@cf/meta/llama-3.1-8b-instruct-fast", "route": "default", "cached_calls": 0, "cost_usd": 1.4748e-05, "stopped": "answer"}
+{"ts": "2026-11-19T19:43:39.742888Z", "service": "hr-assistant", "event": "handoff", "request_id": "9a750e8d-2e13-4b3a-83e1-8da83144fba8", "client": "evidence", "source": "directory", "target": "reviewer"}
+{"ts": "2026-11-19T19:43:39.742888Z", "service": "hr-assistant", "event": "workflow_completed", "request_id": "9a750e8d-2e13-4b3a-83e1-8da83144fba8", "client": "evidence", "agents": ["coordinator", "directory", "reviewer"], "review_status": "approved", "cost_usd": 1.9611e-05}
+{"ts": "2026-11-19T19:43:39.743848Z", "service": "hr-assistant", "event": "request", "request_id": "9a750e8d-2e13-4b3a-83e1-8da83144fba8", "client": "evidence", "method": "POST", "path": "/ask", "status": 200, "latency_ms": 3}
+INFO:     127.0.0.1:59384 - "POST /ask HTTP/1.1" 200 OK

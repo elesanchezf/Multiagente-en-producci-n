@@ -1,0 +1,12 @@
+== libssl/libcrypto enlazados por modulos de Python:
+/usr/local/lib/python3.12/lib-dynload/_ssl.cpython-312-x86_64-linux-gnu.so
+/usr/local/lib/python3.12/lib-dynload/_hashlib.cpython-312-x86_64-linux-gnu.so
+== referencias a los simbolos afectados (binarios; excluye libcrypto/libssl):
+/usr/local/lib/python3.12/site-packages/playwright/driver/node
+/usr/bin/openssl
+== libs que declaran dependencia de libssl3t64 (dpkg):
+  openssl-provider-legacy   openssl-provider-legacy   openssl-provider-legacy   openssl   apt   libapt-pkg7.0   coreutils 
+== ssl del interprete:
+OpenSSL 3.5.7 9 Jun 2026
+== paquetes pip con wheels binarios que traigan OpenSSL propio:
+ninguno

@@ -1,7 +1,7 @@
-# Imagen del HR Assistant. Se usa un tag de version menor. PENDIENTE: verificar
-# el tag exacto, el digest y las vulnerabilidades reportadas de la imagen base;
-# no se hicieron por falta de acceso a la red.
-FROM python:3.12-slim
+# Imagen del HR Assistant. Dependencias instaladas desde requirements.lock.txt.
+# Base fijada por digest (indice multiarquitectura) de python:3.12.16-slim-trixie,
+# verificada el 19-nov-2026 en linux/amd64. Ver evidence/docker/resultado.md.
+FROM python@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b
 
 # No escribir archivos .pyc y mostrar el log sin almacenamiento intermedio.
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -21,8 +21,8 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Las dependencias van primero para aprovechar la cache de capas.
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements.lock.txt ./
+RUN pip install --no-cache-dir -r requirements.lock.txt
 
 # El codigo y los datos. Lo que excluye .dockerignore no entra a la imagen.
 COPY . .
@@ -34,4 +34,4 @@ USER appuser
 
 # Render define PORT; en local se usa 8000. Los secretos llegan por entorno.
 EXPOSE 8000
-CMD uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}
+CMD ["sh", "-c", "exec uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}"]

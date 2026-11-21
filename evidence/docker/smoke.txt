@@ -1,0 +1,16 @@
+Imagen: multiagente-reto:revision (linux/amd64); proveedor fake; clave ficticia de prueba (no impresa)
+== GET /health
+{"status":"ok","pid":1}
+http=200 curl_exit=0
+== POST /ask sin clave
+{"detail":"invalid or missing API key"}
+http=401
+== POST /ask con clave (X-API-Key: ***)
+{"request_id":"36b87228-187a-42a1-813c-8f4c7a1c7764","answer":"id: EMP-0001; name: Ana López; department: Tecnología; role: Analista de datos; start_date: 2019-03-04; status: activo","steps":2,"tools_used":["get_employee"],"input_tokens":225,"output_tokens":26,"model":"@cf/meta/llama-3.1-8b-instruct-fast","route":"default","cached_calls":0,"cost_usd":0.000020108999999999997,"agents_used":["coordinator","directory","reviewer"],"review_status":"approved","review_calls":1}
+http=200
+== usuario del proceso
+uid=10001(appuser) gid=10001(appuser) groups=10001(appuser)
+== lineas del log del contenedor con la palabra question
+{"ts": "2026-11-19T20:34:00.677224Z", "service": "hr-assistant", "event": "agent_run", "request_id": "36b87228-187a-42a1-813c-8f4c7a1c7764", "client": "smoke", "question_chars": 8, "history_messages": 0, "steps": 2, "tools": ["get_employee"], "input_tokens": 134, "output_tokens": 24, "model": "@cf/m
+== lineas con la clave de prueba
+0

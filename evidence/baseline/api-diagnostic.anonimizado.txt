@@ -1,0 +1,78 @@
+[ANONIMIZADO] Copia para entrega: se sustituyeron rutas y nombres de usuario locales por marcadores. El original se conserva solo en local.
+============================= test session starts =============================
+platform win32 -- Python 3.12.16, pytest-9.2.0, pluggy-1.7.0 -- C:\xampp\htdocs\Diplomado\Modulo4\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: <RAIZ_DEL_PROYECTO>
+collecting ... collected 10 items
+
+Timeout (0:00:10)!
+Thread 0x00005178 (most recent call first):
+  File "<USUARIO_LOCAL>\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\socket.py", line 295 in accept
+  File "<USUARIO_LOCAL>\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\socket.py", line 627 in _fallback_socketpair
+  File "<USUARIO_LOCAL>\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\asyncio\proactor_events.py", line 787 in _make_self_pipe
+  File "<USUARIO_LOCAL>\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\asyncio\proactor_events.py", line 640 in __init__
+  File "<USUARIO_LOCAL>\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\asyncio\windows_events.py", line 316 in __init__
+  File "<USUARIO_LOCAL>\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\asyncio\events.py", line 720 in new_event_loop
+  File "<USUARIO_LOCAL>\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\asyncio\events.py", line 823 in new_event_loop
+  File "<USUARIO_LOCAL>\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\asyncio\runners.py", line 137 in _lazy_init
+  File "<USUARIO_LOCAL>\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\asyncio\runners.py", line 58 in __enter__
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2620 in run
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\anyio\_core\_eventloop.py", line 83 in run
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\anyio\from_thread.py", line 639 in run_blocking_portal
+  File "<USUARIO_LOCAL>\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\threading.py", line 1012 in run
+  File "<USUARIO_LOCAL>\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "<USUARIO_LOCAL>\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x0000a43c (most recent call first):
+  File "<USUARIO_LOCAL>\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\threading.py", line 355 in wait
+  File "<USUARIO_LOCAL>\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\concurrent\futures\_base.py", line 451 in result
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\anyio\from_thread.py", line 655 in start_blocking_portal
+  File "<USUARIO_LOCAL>\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\contextlib.py", line 137 in __enter__
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\starlette\testclient.py", line 490 in _portal_factory
+  File "<USUARIO_LOCAL>\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\contextlib.py", line 137 in __enter__
+  File "<USUARIO_LOCAL>\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\contextlib.py", line 526 in enter_context
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\starlette\testclient.py", line 406 in handle_request
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\httpx2\_client.py", line 1075 in _send_single_request
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\httpx2\_client.py", line 1042 in _send_handling_redirects
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\httpx2\_client.py", line 1007 in _send_handling_auth
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\httpx2\_client.py", line 979 in send
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\httpx2\_client.py", line 796 in request
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\starlette\testclient.py", line 518 in request
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\httpx2\_client.py", line 1203 in post
+  File "<RAIZ_DEL_PROYECTO>\tests\test_api_steps.py", line 34 in _ask
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\_pytest\fixtures.py", line 1074 in call_fixture_func
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\pytest_bdd\scenario.py", line 247 in _execute_step_function
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\pytest_bdd\scenario.py", line 281 in _execute_scenario
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\pytest_bdd\scenario.py", line 306 in scenario_wrapper
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\_pytest\python.py", line 187 in pytest_pyfunc_call
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\pluggy\_execution.py", line 147 in _multicall
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\pluggy\_manager.py", line 183 in _hookexec
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\pluggy\_caller.py", line 197 in __call__
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\_pytest\python.py", line 1798 in runtest
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\_pytest\runner.py", line 184 in pytest_runtest_call
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\pluggy\_execution.py", line 147 in _multicall
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\pluggy\_manager.py", line 183 in _hookexec
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\pluggy\_caller.py", line 197 in __call__
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\_pytest\runner.py", line 250 in <lambda>
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\_pytest\runner.py", line 361 in from_call
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\_pytest\runner.py", line 249 in call_and_report
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\_pytest\runner.py", line 139 in runtestprotocol
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\_pytest\runner.py", line 118 in pytest_runtest_protocol
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\pluggy\_execution.py", line 147 in _multicall
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\pluggy\_manager.py", line 183 in _hookexec
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\pluggy\_caller.py", line 197 in __call__
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\_pytest\main.py", line 411 in pytest_runtestloop
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\pluggy\_execution.py", line 147 in _multicall
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\pluggy\_manager.py", line 183 in _hookexec
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\pluggy\_caller.py", line 197 in __call__
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\_pytest\main.py", line 387 in _main
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\_pytest\main.py", line 333 in wrap_session
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\_pytest\main.py", line 380 in pytest_cmdline_main
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\pluggy\_execution.py", line 147 in _multicall
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\pluggy\_manager.py", line 183 in _hookexec
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\pluggy\_caller.py", line 197 in __call__
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\_pytest\config\__init__.py", line 262 in _main
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\_pytest\config\__init__.py", line 286 in _console_main
+  File "C:\xampp\htdocs\Diplomado\Modulo4\.venv\Lib\site-packages\pytest\__main__.py", line 9 in <module>
+  File "<frozen runpy>", line 88 in _run_code
+  File "<frozen runpy>", line 198 in _run_module_as_main

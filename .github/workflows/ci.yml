@@ -18,7 +18,10 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt
-      - run: python -m pylint app tests --max-line-length=88
+      - run: >-
+          python -m pylint app tests e2e
+          scripts/eval_costs.py scripts/real_smoke.py scripts/consolidate_comparison.py scripts/anonymize_evidence.py
+          --max-line-length=88
 
   # Etapa 2: pruebas unitarias y BDD con cobertura minima de 80 %.
   unit:

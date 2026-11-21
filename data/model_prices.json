@@ -2,10 +2,10 @@
   "currency": "USD",
   "unit": "per million tokens",
   "source": "https://developers.cloudflare.com/workers-ai/platform/pricing/",
-  "checked": "2026-11-04 (verify before class: prices change)",
+  "checked": "2026-11-19 (noche): solo se conservan precios confirmados; llama-3.3-70b-instruct-fp8-fast coincide con la pagina oficial y con el catalogo de la cuenta (evidence/cloudflare-check/models-20261119-225959.json). Se eliminaron las entradas de llama-3.1-8b-instruct-fast y -fp8-fast: no aparecen en el catalogo de la cuenta y su precio se habia copiado por suposicion",
   "models": {
     "fake": {"input": 0.0, "output": 0.0},
-    "@cf/meta/llama-3.1-8b-instruct-fast": {"input": 0.045, "output": 0.384},
-    "@cf/meta/llama-3.3-70b-instruct-fp8-fast": {"input": 0.293, "output": 2.253}
+    "@cf/meta/llama-3.3-70b-instruct-fp8-fast": {"input": 0.293, "output": 2.253},
+    "@cf/google/gemma-4-26b-a4b-it": {"input": 0.05, "output": 0.30, "reserve_input": 0.10, "reserve_output": 0.30, "note": "input/output (0.05/0.30, catalogo de la cuenta, evidence/cloudflare-check/scan-20261119-232144.json) calculan los costos informados. reserve_input/reserve_output (0.10/0.30, pagina oficial y ficha del modelo) solo se usan para reservar presupuesto antes de cada llamada y para el peor caso del plan; nunca para los resultados. Si la facturacion real usara 0.10, el costo informado de entrada quedaria a la mitad: el costo real debe contrastarse en el panel de Cloudflare"}
   }
 }

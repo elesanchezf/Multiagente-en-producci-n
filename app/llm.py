@@ -83,7 +83,10 @@ class FakeModel:
         :return: Respuesta JSON con conteo aproximado de tokens.
         """
         last = messages[-1]["content"] if messages else ""
-        text = json.dumps(self._decide(last), ensure_ascii=False)
+        is_review = bool(messages and messages[0]["role"] == "system"
+                         and messages[0]["content"].startswith("Eres un revisor"))
+        decision = {"approved": True} if is_review else self._decide(last)
+        text = json.dumps(decision, ensure_ascii=False)
         input_tokens = sum(count_words(m["content"]) for m in messages)
         return ModelResponse(text, input_tokens, count_words(text))
 

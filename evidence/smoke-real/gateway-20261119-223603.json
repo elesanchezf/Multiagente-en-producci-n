@@ -1,0 +1,87 @@
+{
+  "provider": "gateway",
+  "request_id": "smoke-a1601932321f",
+  "status": 200,
+  "header_matches": true,
+  "body_matches": true,
+  "agents_used": [
+    "coordinator",
+    "directory",
+    "reviewer"
+  ],
+  "review_status": "approved",
+  "model_calls": 3,
+  "hide_inputs": true,
+  "hide_outputs": true,
+  "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+  "route": "routing_disabled",
+  "answer": "id: EMP-0001; name: Ana López; department: Tecnología; role: Analista de datos; start_date: 2019-03-04; status: activo",
+  "answer_matches_employee": true,
+  "tokens": {
+    "total_input": 641,
+    "total_output": 70,
+    "reviewer_input": 252,
+    "reviewer_output": 6,
+    "directory_input": 389,
+    "directory_output": 64
+  },
+  "cost_usd_estimated": 0.000345523,
+  "reviewer_cost_usd_estimated": 8.7354e-05,
+  "budget": {
+    "calls_made": 3,
+    "max_calls": 4,
+    "spent_usd_from_usage": 0.00034552,
+    "max_usd": 0.01,
+    "tripped": null,
+    "per_call": [
+      {
+        "call": 1,
+        "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+        "estimated_input_tokens": 490,
+        "input_tokens": 153,
+        "output_tokens": 17,
+        "cost_usd": 8.313e-05,
+        "cached": false
+      },
+      {
+        "call": 2,
+        "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+        "estimated_input_tokens": 738,
+        "input_tokens": 236,
+        "output_tokens": 47,
+        "cost_usd": 0.000175039,
+        "cached": false
+      },
+      {
+        "call": 3,
+        "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+        "estimated_input_tokens": 817,
+        "input_tokens": 252,
+        "output_tokens": 6,
+        "cost_usd": 8.7354e-05,
+        "cached": false
+      }
+    ]
+  },
+  "log_events_found": [
+    "agent_run",
+    "audit",
+    "handoff",
+    "request",
+    "workflow_completed"
+  ],
+  "log_events_complete": true,
+  "langsmith_complete": true,
+  "stage": "complete",
+  "passed": true,
+  "langsmith_project": "multiagente-reto-revision",
+  "langsmith_runs_found": [
+    "agent_run",
+    "coordinator",
+    "directory_agent",
+    "model_call",
+    "reviewer_agent",
+    "reviewer_model_call",
+    "tool_call"
+  ]
+}

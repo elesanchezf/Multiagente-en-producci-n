@@ -1,0 +1,58 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.76kB 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b
+#2 ...
+
+#3 [auth] library/python:pull token for registry-1.docker.io
+#3 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b
+#2 DONE 1.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 368B 0.0s done
+#4 DONE 0.0s
+
+#5 [1/7] FROM docker.io/library/python@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b
+#5 resolve docker.io/library/python@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b 0.0s done
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 357.22kB 0.1s done
+#6 DONE 0.1s
+
+#7 [2/7] WORKDIR /app
+#7 CACHED
+
+#8 [3/7] RUN apt-get update     && apt-get install --no-install-recommends --only-upgrade -y zlib1g     && rm -rf /var/lib/apt/lists/*
+#8 CACHED
+
+#9 [4/7] COPY requirements.lock.txt ./
+#9 CACHED
+
+#10 [5/7] RUN pip install --no-cache-dir -r requirements.lock.txt
+#10 CACHED
+
+#11 [6/7] COPY . .
+#11 DONE 0.1s
+
+#12 [7/7] RUN useradd --create-home --uid 10001 appuser     && chown -R appuser:appuser /app
+#12 DONE 0.8s
+
+#13 exporting to image
+#13 exporting layers
+#13 exporting layers 0.2s done
+#13 exporting manifest sha256:a19a5d6c6b58bae138d12631b2240b11cb01493fb76b749de2e84760affa7ccb 0.0s done
+#13 exporting config sha256:c3d2b8d7dde90038c6d756e0cb4e8e3141b13b1b50eb5d8870c3b042a82f58b6 0.0s done
+#13 exporting attestation manifest sha256:659e8e1610cc261bd6194257730b031cb2db9797586d9b700db5ac7cfc5afe50 0.0s done
+#13 exporting manifest list sha256:e79f499166bc63beeb90527b7fba1eb318bc759f4a0cbb97c2eb0951c72ada99
+#13 exporting manifest list sha256:e79f499166bc63beeb90527b7fba1eb318bc759f4a0cbb97c2eb0951c72ada99 0.0s done
+#13 naming to docker.io/library/multiagente-reto:final done
+#13 unpacking to docker.io/library/multiagente-reto:final 0.1s done
+#13 DONE 0.5s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/um85ejcnoalqehvlnjecm762i

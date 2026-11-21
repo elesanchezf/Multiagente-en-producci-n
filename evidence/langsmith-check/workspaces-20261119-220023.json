@@ -1,0 +1,10 @@
+{
+  "endpoint_host": "api.smith.langchain.com",
+  "path": "/api/v1/workspaces",
+  "http_status": 401,
+  "workspaces": [],
+  "passed": false,
+  "sent_organization_id": true,
+  "sent_tenant_id": false,
+  "date_utc": "2026-11-19T22:00:23+00:00"
+}

@@ -1,0 +1,32 @@
+........................................................................ [ 46%]
+........................................................................ [ 92%]
+...........                                                              [100%]
+=============================== tests coverage ================================
+______________ coverage: platform win32, python 3.12.16-final-0 _______________
+
+Name                   Stmts   Miss  Cover
+------------------------------------------
+app\__init__.py            0      0   100%
+app\agent.py             129      4    97%
+app\auth.py               35      0   100%
+app\clock.py              20      0   100%
+app\compliance.py         19      0   100%
+app\config.py            112      2    98%
+app\directory.py          36      1    97%
+app\errors.py              1      0   100%
+app\gateway.py            46      1    98%
+app\llm.py                50      3    94%
+app\main.py              149      5    97%
+app\metrics.py            39      0   100%
+app\models.py             10      1    90%
+app\multiagent.py         82      0   100%
+app\observability.py      35      0   100%
+app\pricing.py            31      2    94%
+app\privacy.py            32      0   100%
+app\ratelimit.py          30      0   100%
+app\router.py             21      0   100%
+app\tracing.py            35      7    80%
+------------------------------------------
+TOTAL                    912     26    97%
+Required test coverage of 80% reached. Total coverage: 97.15%
+155 passed in 5.54s

@@ -1,0 +1,137 @@
+    i New version 1.29.0 available (installed version is 1.28.0) at https://github.com/docker/scout-cli
+    ...Storing image for indexing
+    v Image stored for indexing
+    ...Indexing
+    v Indexed 145 packages
+    x Detected 5 vulnerable packages with a total of 14 vulnerabilities
+
+
+## Overview
+
+                   │       Analyzed Image        
+───────────────────┼─────────────────────────────
+ Target            │  python                     
+   digest          │  e48f59cdba69               
+   platform        │ linux/amd64                 
+   vulnerabilities │    0C    14H     0M     0L  
+   size            │ 43 MB                       
+   packages        │ 145                         
+
+
+## Packages and Vulnerabilities
+
+   0C     6H     0M     0L  openssl 3.5.7-1~deb13u3
+pkg:deb/debian/openssl@3.5.7-1~deb13u3?os_distro=trixie&os_name=debian&os_version=13
+
+    x HIGH CVE-2026-95691
+      https://scout.docker.com/v/CVE-2026-95691?s=debian&n=openssl&ns=debian&t=deb&osn=debian&osv=13&vr=%3E0
+      Affected range : >0        
+      Fixed version  : not fixed 
+    
+    x HIGH CVE-2026-107493
+      https://scout.docker.com/v/CVE-2026-107493?s=debian&n=openssl&ns=debian&t=deb&osn=debian&osv=13&vr=%3E0
+      Affected range : >0        
+      Fixed version  : not fixed 
+    
+    x HIGH CVE-2026-95692
+      https://scout.docker.com/v/CVE-2026-95692?s=debian&n=openssl&ns=debian&t=deb&osn=debian&osv=13&vr=%3E0
+      Affected range : >0        
+      Fixed version  : not fixed 
+    
+    x HIGH CVE-2026-88823
+      https://scout.docker.com/v/CVE-2026-88823?s=debian&n=openssl&ns=debian&t=deb&osn=debian&osv=13&vr=%3E0
+      Affected range : >0        
+      Fixed version  : not fixed 
+    
+    x HIGH CVE-2026-124709
+      https://scout.docker.com/v/CVE-2026-124709?s=debian&n=openssl&ns=debian&t=deb&osn=debian&osv=13&vr=%3E0
+      Affected range : >0        
+      Fixed version  : not fixed 
+    
+    x HIGH CVE-2026-107496
+      https://scout.docker.com/v/CVE-2026-107496?s=debian&n=openssl&ns=debian&t=deb&osn=debian&osv=13&vr=%3E0
+      Affected range : >0        
+      Fixed version  : not fixed 
+    
+
+   0C     3H     0M     0L  msgpack 1.1.2
+pkg:pypi/msgpack@1.1.2
+
+    x HIGH GHSA-6v7p-g79w-8964 [Use After Free]
+      https://scout.docker.com/v/GHSA-6v7p-g79w-8964?s=github&n=msgpack&t=pypi&vr=%3C%3D1.2.0
+      Affected range : <=1.2.0                                      
+      Fixed version  : 1.2.1                                        
+      CVSS Score     : 7.5                                          
+      CVSS Vector    : CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H 
+    
+    x HIGH CVE-2026-57585
+      https://scout.docker.com/v/CVE-2026-57585?s=pypa&n=msgpack&t=pypi&vr=%3C1.2.1
+      Affected range : <1.2.1                                       
+      Fixed version  : 1.2.1                                        
+      CVSS Score     : 7.5                                          
+      CVSS Vector    : CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H 
+    
+    x HIGH CVE-2026-114613 [Missing Release of Memory after Effective Lifetime]
+      https://scout.docker.com/v/CVE-2026-114613?s=github&n=msgpack&t=pypi&vr=%3C1.2.3
+      Affected range : <1.2.3                                       
+      Fixed version  : 1.2.3                                        
+      CVSS Score     : 7.5                                          
+      CVSS Vector    : CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H 
+    
+
+   0C     2H     0M     0L  zlib 1:1.3.dfsg+really1.3.1-1
+pkg:deb/debian/zlib@1%3A1.3.dfsg%2Breally1.3.1-1?os_distro=trixie&os_name=debian&os_version=13
+
+    x HIGH CVE-2026-85091
+      https://scout.docker.com/v/CVE-2026-85091?s=debian&n=zlib&ns=debian&t=deb&osn=debian&osv=13&vr=%3C1%3A1.3.dfsg%2Breally1.3.1-1%2Bdeb13u1
+      Affected range : <1:1.3.dfsg+really1.3.1-1+deb13u1 
+      Fixed version  : 1:1.3.dfsg+really1.3.1-1+deb13u1  
+    
+    x HIGH CVE-2026-76844
+      https://scout.docker.com/v/CVE-2026-76844?s=debian&n=zlib&ns=debian&t=deb&osn=debian&osv=13&vr=%3C1%3A1.3.dfsg%2Breally1.3.1-1%2Bdeb13u1
+      Affected range : <1:1.3.dfsg+really1.3.1-1+deb13u1 
+      Fixed version  : 1:1.3.dfsg+really1.3.1-1+deb13u1  
+    
+
+   0C     2H     0M     0L  urllib3 2.7.0
+pkg:pypi/urllib3@2.7.0
+
+    x HIGH CVE-2026-97689 [Allocation of Resources Without Limits or Throttling]
+      https://scout.docker.com/v/CVE-2026-97689?s=github&n=urllib3&t=pypi&vr=%3E%3D1.10.3%2C%3C2.8.0
+      Affected range : >=1.10.3                                                        
+                     : <2.8.0                                                          
+      Fixed version  : 2.8.0                                                           
+      CVSS Score     : 8.9                                                             
+      CVSS Vector    : CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:H 
+    
+    x HIGH CVE-2026-97687 [Improper Certificate Validation]
+      https://scout.docker.com/v/CVE-2026-97687?s=github&n=urllib3&t=pypi&vr=%3E%3D1.26.0%2C%3C2.8.0
+      Affected range : >=1.26.0                                                        
+                     : <2.8.0                                                          
+      Fixed version  : 2.8.0                                                           
+      CVSS Score     : 7.6                                                             
+      CVSS Vector    : CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:P/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N 
+    
+
+   0C     1H     0M     0L  setuptools 70.3.0
+pkg:pypi/setuptools@70.3.0
+
+    x HIGH CVE-2025-47273 [Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')]
+      https://scout.docker.com/v/CVE-2025-47273?s=github&n=setuptools&t=pypi&vr=%3C78.1.1
+      Affected range : <78.1.1                                                             
+      Fixed version  : 78.1.1                                                              
+      CVSS Score     : 7.7                                                                 
+      CVSS Vector    : CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:H/VA:N/SC:N/SI:N/SA:N/E:P 
+    
+
+
+14 vulnerabilities found in 5 packages
+  CRITICAL  0  
+  HIGH      14 
+  MEDIUM    0  
+  LOW       0  
+
+
+What's next:
+    View base image update recommendations → docker scout recommendations python@sha256:e48f59cdba69a3cbd9ed2cf0f348d90d45a8d350d98134cf1070bc106ee9ed90
+

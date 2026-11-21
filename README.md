@@ -1,12 +1,53 @@
 # HR Assistant
 
+## Reto de multiagentes en producción
+
+Este reto es «Sistema multi-agente en producción» (plan y rúbrica M4); no es el reto de Servidor MCP. Esta copia evoluciona la base de M4 (sesión 4) con un coordinador, un agente de directorio y un agente revisor. Diseño: `doc/multiagent-architecture.md`; documento de entrega: `doc/entrega.md` y `doc/entrega/` (Word y PDF); estado de evidencias: `evidence/README.md`. Los documentos heredados describen la sesión 4.
+
+### Requisitos previos
+- Python 3.12, Git y [uv](https://docs.astral.sh/uv/) (o pip). Docker, solo para la imagen. Cuenta de Cloudflare con AI Gateway y, opcionalmente, LangSmith, solo para el proveedor real.
+
+### Clonar e instalar (Windows, PowerShell)
+```powershell
+git clone https://github.com/elesanchezf/Multiagente-en-producci-n.git
+cd Multiagente-en-producci-n
+git checkout reto/produccion
+$env:UV_CACHE_DIR = Join-Path (Get-Location) '.uv-cache'
+uv venv --python 3.12
+uv pip sync --python .venv/Scripts/python.exe requirements.lock.txt
+```
+Las versiones de `requirements.lock.txt` corresponden al entorno Windows verificado; la imagen de contenedor las instala en Linux.
+
+### Variables de entorno
+Copie `.env.example` y complete los valores (no suba `.env`). Con modelo simulado basta `MODEL_PROVIDER=fake` y `API_KEYS=cliente:<clave de 16 o más caracteres>`. Con proveedor real: `MODEL_PROVIDER=gateway`, `CF_ACCOUNT_ID`, `CF_API_TOKEN` y, si el gateway lo exige, `CF_AIG_TOKEN`. Las tablas de variables están más abajo. Los secretos se escriben solo en el entorno o en el panel de Render.
+
+### Comandos de ejecución
+```powershell
+$env:MODEL_PROVIDER = 'fake'; $env:API_KEYS = 'cliente:clave-ficticia-0123456789'
+.venv/Scripts/python.exe -m uvicorn app.main:app --port 8000      # API; Swagger en /docs, salud en /health
+powershell -ExecutionPolicy Bypass -File scripts/verify-local.ps1  # pruebas y Pylint (guarda evidencia en evidence/runs/)
+.venv/Scripts/python.exe -m pytest tests e2e                       # unitarias y de navegador (las e2e inician su servidor simulado)
+docker build --platform linux/amd64 -t multiagente-reto:final .    # imagen de contenedor
+```
+La evaluación real de costos (`scripts/run-q09.ps1`, `scripts/run-comparison.ps1`) exige `-ConfirmRealCalls` y credenciales en la ventana de PowerShell. El despliegue en Render se describe en `doc/despliegue-render.md`.
+
+Para las capturas locales, con datos ficticios y modelo simulado:
+
+```powershell
+$env:PLAYWRIGHT_BROWSERS_PATH = Join-Path (Get-Location) '.playwright'
+.venv/Scripts/python.exe -m playwright install chromium
+.venv/Scripts/python.exe scripts/capture-local.py
+```
+
+El ejecutor ocupa temporalmente el puerto 8014, guarda la captura y cierra su servidor. No carga `.env` ni usa credenciales reales.
+
 Asistente de Recursos Humanos con API web sin estado, una página de consulta y
 observabilidad por petición: identificador de petición, log JSON, métricas por
 proceso y trazas opcionales en LangSmith. Todos los datos de ejemplo son ficticios.
 
 ## Cómo correrlo
 
-Desde la carpeta `product/`:
+Desde la raíz del repositorio (equivale a la sección anterior, con pip):
 
 ```
 pip install -r requirements.txt
@@ -22,7 +63,7 @@ uvicorn app.main:app --port 8000
 ## Pruebas
 
 Unitarias y de comportamiento (no usan red ni requieren el producto corriendo),
-desde `product/`:
+desde la raíz del repositorio:
 
 ```
 pytest tests --cov=app
@@ -32,16 +73,24 @@ La cobertura mínima es de 80 %. No ejecute `pytest` sin argumentos: también
 recolectaría `e2e/`, que necesita el producto en marcha.
 
 Punta a punta (`e2e/`, Playwright): requieren `pytest-playwright` (incluido en
-`requirements.txt`), navegadores instalados y el producto corriendo con el modelo
-simulado.
+`requirements.txt`) y navegadores instalados. Sin `--base-url`, `e2e/conftest.py`
+inicia el producto con el modelo simulado y una clave ficticia en un puerto libre;
+con `--base-url` (como en CI) usa el servidor indicado.
 
 ```
 playwright install
+pytest e2e
+```
+
+Alternativa con servidor propio (dos terminales; `E2E_API_KEY` debe coincidir con una
+clave de `API_KEYS`):
+
+```
 MODEL_PROVIDER=fake uvicorn app.main:app --port 8000
 pytest e2e --base-url http://127.0.0.1:8000
 ```
 
-Los dos últimos comandos se ejecutan en terminales distintas. Desde la raíz de la
+Desde la raíz de la
 fábrica, `uv run python -m verification <paso>` corre cada nivel: `unit`
 (pruebas unitarias), `contract` (contrato contra el producto corriendo), `e2e`
 (Playwright; arranca el producto por su cuenta), `evaluate` (costo y calidad
@@ -129,7 +178,7 @@ sin precio impide arrancar.
 | `CF_GATEWAY_ID` | `default` | Gateway de Cloudflare |
 | `CF_API_TOKEN` | (vacía) | Token de Cloudflare, secreto, solo del entorno |
 | `CF_AIG_TOKEN` | (vacía) | Token de autenticación de AI Gateway, opcional, secreto, solo del entorno |
-| `MODEL_SMALL` | `@cf/meta/llama-3.1-8b-instruct-fast` | Modelo barato |
+| `MODEL_SMALL` | `@cf/meta/llama-3.3-70b-instruct-fp8-fast` | Modelo barato; provisional: sin modelo pequeño verificado, igual al capaz |
 | `MODEL_LARGE` | `@cf/meta/llama-3.3-70b-instruct-fp8-fast` | Modelo capaz |
 | `ROUTING` | `true` | Enrutamiento por pregunta |
 | `ROUTER_MAX_CHARS` | `80` | Preguntas más largas van al modelo capaz |
@@ -156,3 +205,21 @@ institucional.
 ## Documentación
 
 Arquitectura y decisiones (ADR) en `doc/`.
+
+## Entrega del reto: estado de las evidencias (21-nov-2026)
+
+Resumen honesto; el detalle, con fechas y límites, está en `evidence/README.md`,
+`evidence/pendientes-entrega-20261120.md` y `doc/evaluacion-costos.md`.
+
+| Área | Comprobado | Pendiente |
+| --- | --- | --- |
+| Multiagente | Coordinador, directorio y revisor; 242 pruebas, cobertura 98 %, Pylint 10/10, 7 e2e (modelo simulado) | — |
+| Proveedor real | Consulta real con 70B y traza en LangSmith (19-nov); sonda Gemma 2/3; Q09 real aprobada; comparación completa | — |
+| Costos | Comparación real de 12 preguntas por variante (`evidence/resultado-comparacion-E06.md`): aprobadas 9 vs 10; costo estimado 0,003643 vs 0,001374 USD; latencia media 1 804 vs 3 802 ms. Optimized combina dos ejecuciones (espera 30→60 s); Q05 y Q06 no aprobaron en ambas | Costos estimados, no factura; ahorro no garantizado; muestra pequeña |
+| Concurrencia | Local: 300 solicitudes, 30 simultáneas, 0 errores | Sobre el despliegue |
+| Seguridad | Privacidad, claves, aislamiento (local); Scout 21-nov: 0 críticas y 3 altas de OpenSSL sin corrección | Revisión de privilegios; riesgo de OpenSSL aceptado temporalmente (revisión 27-nov-2026), sin VEX |
+| Despliegue | Build amd64 y humo en contenedor local (21-nov) | Render, Swagger, consulta real en URL pública |
+| Entrega | Remoto configurado | Commits, push, PR hacia `main`, CI en GitHub, capturas y video |
+
+Los precios de Gemma (0,05 y 0,10 USD por millón de entrada) provienen de fuentes
+contradictorias: el costo calculado es una estimación, no una tarifa facturada.

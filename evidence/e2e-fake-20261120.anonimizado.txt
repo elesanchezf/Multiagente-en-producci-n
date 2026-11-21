@@ -1,0 +1,16 @@
+[ANONIMIZADO] Copia para entrega: se sustituyeron rutas y nombres de usuario locales por marcadores. El original se conserva solo en local.
+============================= test session starts =============================
+platform win32 -- Python 3.12.16, pytest-9.2.0, pluggy-1.7.0 -- <RAIZ_DEL_PROYECTO>\.venv\Scripts\python.exe
+rootdir: <RAIZ_DEL_PROYECTO>
+plugins: anyio-4.16.0, langsmith-0.15.0, platformdirs-4.14.7, bdd-9.0.1, cov-7.1.0, playwright-0.10.0
+collecting ... collected 7 items
+
+e2e/test_ask_flow.py::test_user_sees_the_answer_after_asking_a_question[chromium] PASSED [ 14%]
+e2e/test_ask_flow.py::test_user_sees_the_request_id_after_asking_a_question[chromium] PASSED [ 28%]
+e2e/test_ask_flow.py::test_question_field_is_cleared_after_sending[chromium] PASSED [ 42%]
+e2e/test_ask_flow.py::test_empty_question_shows_an_error_message_in_spanish[chromium] PASSED [ 57%]
+e2e/test_ask_flow.py::test_second_question_keeps_the_previous_conversation_on_screen[chromium] PASSED [ 71%]
+e2e/test_ask_flow.py::test_wrong_key_shows_the_invalid_key_message[chromium] PASSED [ 85%]
+e2e/test_ask_flow.py::test_directory_response_is_reviewed_and_evidence_is_saved[chromium] PASSED [100%]
+
+============================== 7 passed in 7.74s ==============================

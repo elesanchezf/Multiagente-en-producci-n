@@ -1,0 +1,52 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.76kB 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 368B done
+#3 DONE 0.0s
+
+#4 [1/7] FROM docker.io/library/python@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b
+#4 resolve docker.io/library/python@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 5.38kB 0.0s done
+#5 DONE 0.0s
+
+#6 [2/7] WORKDIR /app
+#6 CACHED
+
+#7 [3/7] RUN apt-get update     && apt-get install --no-install-recommends --only-upgrade -y zlib1g     && rm -rf /var/lib/apt/lists/*
+#7 CACHED
+
+#8 [4/7] COPY requirements.lock.txt ./
+#8 CACHED
+
+#9 [5/7] RUN pip install --no-cache-dir -r requirements.lock.txt
+#9 CACHED
+
+#10 [6/7] COPY . .
+#10 DONE 0.3s
+
+#11 [7/7] RUN useradd --create-home --uid 10001 appuser     && chown -R appuser:appuser /app
+#11 DONE 0.7s
+
+#12 exporting to image
+#12 exporting layers
+#12 exporting layers 0.2s done
+#12 exporting manifest sha256:ab6928665e830b0edee921ac39ef396719f9b92387c6a1ab353560ede57757c6 0.0s done
+#12 exporting config sha256:ca7dc561bb1edf67739581e86076bbf4fb4da5cd1510062da2527a01103cfeb0 0.0s done
+#12 exporting attestation manifest sha256:afe5acd7a89483568a9570b3549845264f3d1b693d2d1643bd0f0665178d59ae 0.0s done
+#12 exporting manifest list sha256:c96d12d2b1ce755221f00fb01f7de3767ca2068a4da0da597ae8c93f86040095 0.0s done
+#12 naming to docker.io/library/multiagente-reto:revision
+#12 naming to docker.io/library/multiagente-reto:revision done
+#12 unpacking to docker.io/library/multiagente-reto:revision 0.1s done
+#12 DONE 0.5s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/s9sieu1fry6nt99t0rn827sdg
