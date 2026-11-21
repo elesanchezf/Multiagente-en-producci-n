@@ -9,7 +9,7 @@
 
 ## Comandos (ejecutar en este orden, desde la raíz del proyecto)
 1. Revisar qué se publicaría: `git log --oneline --all`, `git diff --stat main..reto/produccion`, `git ls-tree -r --name-only reto/produccion`.
-2. Búsqueda de secretos antes de publicar (no debe imprimir resultados): `git grep -IlE "cfut_|lsv2_(pt|sk)_|ghp_|github_pat_|PRIVATE KEY" reto/produccion -- . ":!app/privacy.py"`.
+2. Búsqueda de secretos antes de publicar (no debe imprimir resultados): `git grep -IlE "cfut_|lsv2_(pt|sk)_|ghp_|github_pat_|PRIVATE KEY" reto/produccion -- . ":!app/privacy.py" ":!doc/publicacion.md"` (esos dos archivos contienen los patrones buscados, no secretos).
 3. Publicar `main` (crea la rama predeterminada del repositorio vacío): `git push -u origin main`.
 4. Publicar la rama de trabajo: `git push -u origin reto/produccion`.
 5. Abrir el PR: `gh pr create --base main --head reto/produccion --title "<título de doc/entrega/…>" --body-file doc/pr-descripcion.md`.
