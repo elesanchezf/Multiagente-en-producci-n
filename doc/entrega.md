@@ -21,7 +21,7 @@ Base de comparación: commit `6083236` del repositorio `hr-assistant` (78 archiv
 | Pruebas | `evidence/e2e-fake-20261120.txt`; ejecución del 21-nov | 252 pruebas aprobadas (unitarias y navegador); Pylint 10,00/10 sobre `app`, `tests`, `e2e` y scripts de evaluación | Modelo simulado en las e2e |
 | Multiagente | `evidence/multiagent-*.txt`, `screenshots/multiagent-local.png` | Coordinador, directorio y revisor en una misma solicitud con `request_id` común | Captura local con modelo simulado |
 | Proveedor real | `evidence/smoke-real/`, `evidence/costs/` | Consulta real con el 70B (19-nov); Q09 real con Gemma aprobada; comparación real completa | Datos ficticios; trazas con entradas y salidas ocultas |
-| Observabilidad | `evidence/smoke-real/resultado-gateway-20261119.md` | Mismo `request_id` en respuesta, log y trazas de LangSmith (consulta por metadatos) | Sin captura de la interfaz de LangSmith |
+| Observabilidad | `evidence/smoke-real/resultado-gateway-20261119.md` | Mismo `request_id` en respuesta, log y trazas de LangSmith (consulta por metadatos) | Dos capturas de LangSmith tomadas por la persona responsable (árbol de agentes y `request_id` smoke-a1601932321f con contenido oculto); **falta adjuntarlas al repositorio** |
 | Concurrencia | `evidence/load/summary.json` | Local: 300 solicitudes, 30 simultáneas, 0 errores, aislamiento 300/300 | Modelo simulado; un proceso; no es el despliegue |
 | Seguridad | `evidence/privacy-tests.txt`, `doc/compliance-checklist.md` | Autenticación por cliente, límite de peticiones, detección de datos sensibles en ambos sentidos, auditoría sin texto de preguntas | Revisión de privilegios pendiente |
 | Contenedor | `evidence/docker/20261121/` | Build linux/amd64, usuario no root (UID 10001), `/health` 200, `/docs` 200, `/ask` 401 sin clave y 200 con clave, clave y pregunta ausentes del log | Imagen local sin digest de registro; humo con modelo simulado |
@@ -54,7 +54,7 @@ Fuente: `evidence/resultado-comparacion-E06.md` y `evidence/costs/consolidado-20
 ## 4. Pendientes que bloquean la entrega
 
 1. **Despliegue en Render:** el blueprint del servicio separado `multiagente-reto` está listo (`render.yaml`, `doc/despliegue-render.md`); falta desplegarlo, Swagger público, consulta autenticada con el modelo real y concurrencia sobre la URL pública.
-2. **Capturas faltantes:** Swagger, Render (servicio y health), interfaz de LangSmith con una traza, y los resultados de la comparación. Solo existe la captura local con modelo simulado.
+2. **Capturas:** las dos de LangSmith (árbol de agentes y `request_id` smoke-a1601932321f con contenido oculto) están tomadas por la persona responsable y **pendientes de adjuntar al repositorio**. Faltan Swagger público, Render y los resultados de la comparación. En el repositorio solo existe la captura local con modelo simulado.
 3. **Decisión sobre OpenSSL:** tres altas sin corrección; requiere decisión de la persona responsable y repetir el escaneo sobre el digest de registro.
 4. **Revisión de privilegios** (mínimo privilegio de tokens y servicio).
 5. **Repositorio y PR:** la rama `reto/produccion` no tiene commits; `main` del repositorio de entrega está vacío (ver `doc/publicacion.md`). CI sin ejecutar en GitHub.

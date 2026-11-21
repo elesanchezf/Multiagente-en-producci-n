@@ -91,3 +91,6 @@ Sonda Gemma (`costs/20261120-015535-real/results.json`, conservada): 2/3; Q09 fa
 Los originales con rutas o identificadores personales se conservan solo en local y no se versionan (`.gitignore`). Para entregar se usan copias con sufijo `.anonimizado` que empiezan con la línea `[ANONIMIZADO]`:
 `baseline/api-diagnostic`, `baseline/pytest-isolated`, `baseline/pytest`, `e2e-fake-20261120`, `multiagent-e2e`, `multiagent-tests` y `langsmith-check/workspaces-20261119-223325`. Las referencias de este índice a esos nombres se refieren al original local; en el repositorio está la copia anonimizada. Generador: `scripts/anonymize_evidence.py`.
 - `docker/20261121/openssl-aplicabilidad.txt` y `doc/openssl-aplicabilidad.md`: revisión de aplicabilidad de las tres CVE (no se encontró uso; no afectado no demostrado).
+
+## Capturas de LangSmith (21-nov-2026)
+La persona responsable tomó dos capturas de la interfaz de LangSmith: el árbol de agentes y el `request_id` smoke-a1601932321f con contenido oculto. **Aún no están en el repositorio**; se adjuntarán en `evidence/screenshots/` cuando se entreguen. No se reproducen ni se describen más allá de lo informado.

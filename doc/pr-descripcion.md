@@ -27,7 +27,7 @@ Ver `README.md` (requisitos, instalación, variables de entorno y comandos). Res
 
 ## Notas Adicionales
 - Limitaciones: ver `doc/entrega.md` sección 3 y `doc/openssl-aplicabilidad.md`.
-- Pendientes que bloquean la entrega: despliegue en Render, capturas (Swagger, Render, LangSmith), decisión sobre OpenSSL, CI en GitHub y video.
+- Pendientes que bloquean la entrega: despliegue en Render, capturas (Swagger y Render; las dos de LangSmith están tomadas y falta adjuntarlas), decisión sobre OpenSSL, CI en GitHub y video.
 
 ## Archivos en este PR
 `app/` (API, coordinador y agentes), `tests/` y `e2e/`, `scripts/` (evaluación, consolidación, anonimización), `doc/` (arquitectura, ADR, costos, vulnerabilidades, despliegue, entrega), `evidence/` (con copias anonimizadas), `Dockerfile`, `render.yaml`, `.github/workflows/ci.yml`.

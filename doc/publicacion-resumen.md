@@ -6,15 +6,15 @@ Repositorio destino: `elesanchezf/Multiagente-en-producci-n` (privado, hoy vací
 | Rama | Contenido |
 | --- | --- |
 | `main` | 1 commit inicial nuevo: base de la sesión 4 (78 archivos; árbol idéntico a `hr-assistant@6083236`, sin importar su historial) |
-| `reto/produccion` | 5 commits sobre `main`: multiagente y privacidad; costos y evaluación; contenedor, CI y Render; documentación y evidencias; resumen de publicación |
+| `reto/produccion` | 6 commits sobre `main`: multiagente y privacidad; costos y evaluación; contenedor, CI y Render; documentación y evidencias; resumen de publicación; capturas pendientes y PDF |
 
-El PR `reto/produccion` → `main` muestra 165 archivos: 138 añadidos y 27 modificados (14 548 inserciones, 71 eliminaciones).
+El PR `reto/produccion` → `main` muestra 165 archivos: 138 añadidos y 27 modificados (14 551 inserciones, 71 eliminaciones).
 
 ## Por directorio (archivos en el PR)
 app 10 · tests 19 · e2e 2 · scripts 13 · doc 16 · evidence 94 · data 2 · más Dockerfile, `.dockerignore`, `.env.example`, `.gitignore`, `.pylintrc`, `render.yaml`, `requirements.lock.txt`, `README.md` y `.github/workflows/ci.yml`.
 
 ## Los archivos de mayor tamaño
-`doc/entrega/Entrega_Multiagente_en_produccion.pdf` (7,0 MB), `…docx` (3,4 MB), `evidence/load/server.log` (0,45 MB). Total versionado: unos 11 MB en `doc/entrega`.
+`doc/entrega/…docx` (3,4 MB), `doc/entrega/…pdf` (0,3 MB, exportado desde Word) y `evidence/load/server.log` (0,45 MB).
 
 ## No se publica (solo local)
 `.env` y variantes, `.venv`, `.uv-cache`, `.playwright`, cachés, `*.pid`, y los originales con rutas personales o identificadores de cuenta: `evidence/baseline/{api-diagnostic,pytest-isolated,pytest}.txt`, `evidence/e2e-fake-20261120.txt`, `evidence/multiagent-{e2e,tests}.txt` y `evidence/langsmith-check/workspaces-20261119-223325.json`. En su lugar se publican las copias `*.anonimizado.*`, marcadas como anonimizadas.
