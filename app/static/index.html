@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HR Assistant</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 720px; margin: 2rem auto; }
+    #answer { border: 1px solid #ccc; padding: 1rem; min-height: 8rem; }
+    .msg { margin: 0 0 0.75rem 0; white-space: pre-wrap; }
+    .user { font-weight: bold; }
+    .tools { color: #555; font-size: 0.85rem; }
+    .error { color: #a00; }
+    .keyrow { display: flex; gap: 0.5rem; align-items: center; margin-top: 1rem; }
+    form { display: flex; gap: 0.5rem; margin-top: 1rem; }
+    input { flex: 1; padding: 0.5rem; }
+  </style>
+</head>
+<body>
+  <h1>Asistente de Recursos Humanos</h1>
+  <div data-testid="answer" id="answer" aria-live="polite"></div>
+  <p class="tools">ID de la última respuesta (para soporte):
+    <span data-testid="request-id" id="request-id">-</span></p>
+  <div class="keyrow">
+    <label for="api-key">Clave de acceso</label>
+    <input data-testid="api-key" id="api-key" type="password" autocomplete="off"
+           placeholder="Escribe tu clave">
+  </div>
+  <form id="form">
+    <input data-testid="question" id="question" type="text" autocomplete="off"
+           placeholder="Escribe tu pregunta">
+    <button data-testid="send" id="send" type="submit">Enviar</button>
+  </form>
+  <script>
+    var conversation = [];
+    var log = document.getElementById("answer");
+    var field = document.getElementById("question");
+    var keyField = document.getElementById("api-key");
+    var KEY_STORAGE = "hr-assistant-key";
+
+    // La clave vive solo en sessionStorage: se borra al cerrar la pestaña.
+    keyField.value = sessionStorage.getItem(KEY_STORAGE) || "";
+    keyField.addEventListener("input", function () {
+      sessionStorage.setItem(KEY_STORAGE, keyField.value.trim());
+    });
+
+    function addLine(text, className) {
+      var line = document.createElement("p");
+      line.className = "msg " + className;
+      line.textContent = text;
+      log.appendChild(line);
+      return line;
+    }
+
+    function showRequestId(value) {
+      document.getElementById("request-id").textContent = value || "-";
+    }
+
+    async function send(event) {
+      event.preventDefault();
+      var question = field.value.trim();
+      if (!question) {
+        log.textContent = "";
+        addLine("Escribe una pregunta antes de enviar.", "error");
+        return;
+      }
+      field.value = "";
+      addLine(question, "user");
+      try {
+        var response = await fetch("/ask", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-API-Key": sessionStorage.getItem(KEY_STORAGE) || ""
+          },
+          body: JSON.stringify({ question: question, history: conversation })
+        });
+        showRequestId(response.headers.get("X-Request-ID"));
+        if (response.status === 401) {
+          addLine("Clave inválida", "error");
+          return;
+        }
+        if (response.status === 429) {
+          var wait = response.headers.get("Retry-After") || "1";
+          addLine("Demasiadas preguntas; espera " + wait + " segundos", "error");
+          return;
+        }
+        if (!response.ok) {
+          addLine("No fue posible obtener una respuesta. Revisa la pregunta e "
+                  + "intenta de nuevo.", "error");
+          return;
+        }
+        var data = await response.json();
+        showRequestId(data.request_id || response.headers.get("X-Request-ID"));
+        addLine(data.answer, "assistant");
+        var tools = data.tools_used.length ? data.tools_used.join(", ") : "ninguna";
+        addLine("Herramientas usadas: " + tools, "tools");
+        conversation.push({ role: "user", content: question });
+        conversation.push({ role: "assistant", content: data.answer });
+      } catch (error) {
+        addLine("Error de conexión con el servicio. Intenta más tarde.", "error");
+      }
+    }
+
+    document.getElementById("form").addEventListener("submit", send);
+  </script>
+</body>
+</html>

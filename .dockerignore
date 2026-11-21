@@ -1,0 +1,21 @@
+# Secretos: nunca entran a la imagen.
+.env
+
+# Pruebas: no se necesitan para ejecutar el producto.
+tests
+e2e
+
+# Cachés y artefactos locales.
+__pycache__
+*.pyc
+.pytest_cache
+.pylint.d
+.mypy_cache
+.ruff_cache
+.coverage
+htmlcov
+.venv
+
+# Control de versiones y CI.
+.git
+.github

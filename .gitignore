@@ -1,0 +1,15 @@
+# Secretos: nunca se versionan. El ejemplo sin valores reales si.
+.env
+
+# Entorno virtual.
+.venv/
+
+# Cachés y artefactos locales.
+__pycache__/
+*.pyc
+.pytest_cache/
+.pylint.d/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
